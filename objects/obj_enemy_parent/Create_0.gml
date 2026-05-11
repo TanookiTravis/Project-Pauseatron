@@ -12,3 +12,9 @@ vel_x = choose(-move_speed, move_speed);
 
 // This sets the friction to 0 so the enemy never comes to a stop.
 friction_power = 0;
+
+// handle player detection and shooting
+shoot_cooldown = 0;
+shoot_interval = 45;     // ~every 45 steps (~0.75s at 60fps)
+aggro_range = 1000;
+accuracy = 0.5;          // 50% accuracy
