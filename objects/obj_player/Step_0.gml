@@ -14,8 +14,8 @@ if (global.gamepad_slot != -1)
     var right_h = gamepad_axis_value(slot, gp_axisrh);
     var right_v = gamepad_axis_value(slot, gp_axisrv);
     
-    if (abs(right_h) > deadzone || abs(right_v) > deadzone)
-    {
+    //if (abs(right_h) > deadzone || abs(right_v) > deadzone)
+    //{
         var aim_dir = point_direction(0, 0, right_h, right_v);
         
         if (gamepad_button_check_pressed(slot, gp_shoulderrb))   // R2
@@ -35,5 +35,5 @@ if (global.gamepad_slot != -1)
             
             show_debug_message("DEBUG bullet fired, direction: " + string(aim_dir));
         }
-    }
+    //}
 }
