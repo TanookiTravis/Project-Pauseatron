@@ -1,15 +1,13 @@
 {
   "$GMObject":"",
-  "%Name":"obj_bridge",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"obj_reflect_zone",
+  "eventList":[],
   "managed":true,
-  "name":"obj_bridge",
+  "name":"obj_reflect_zone",
   "overriddenProperties":[],
   "parent":{
-    "name":"Environment",
-    "path":"folders/Objects/Environment.yy",
+    "name":"Editor",
+    "path":"folders/Objects/Environment/Editor.yy",
   },
   "parentObjectId":{
     "name":"obj_env_collision",
@@ -33,9 +31,9 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_bridge",
-    "path":"sprites/spr_bridge/spr_bridge.yy",
+    "name":"spr_reflect_zone",
+    "path":"sprites/spr_reflect_zone/spr_reflect_zone.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

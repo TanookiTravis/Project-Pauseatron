@@ -17,8 +17,8 @@
     "path":"folders/Objects/Environment/Blocks.yy",
   },
   "parentObjectId":{
-    "name":"obj_collision",
-    "path":"objects/obj_collision/obj_collision.yy",
+    "name":"obj_env_collision",
+    "path":"objects/obj_env_collision/obj_env_collision.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

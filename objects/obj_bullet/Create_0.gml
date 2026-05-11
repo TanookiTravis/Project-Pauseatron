@@ -1,5 +1,8 @@
-speed = 12;           // or set hspeed/vspeed directly when firing
-direction = 0;        // will be set when firing
+hspeed = 0;
+vspeed = 0;
 
-bounce_factor = 0.95; // 1.0 = perfect bounce, <1 = loses energy
-bounces = 3;          // how many times it can bounce before disappearing
+bounce_factor = 0.92;     // 1.0 = perfect energy, lower = loses speed on bounce
+max_bounces = 1;          // How many times it can bounce before being destroyed
+bounces = max_bounces;
+
+image_angle = direction;  // Rotate sprite to face movement direction
