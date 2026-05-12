@@ -1,20 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"obj_enemy2",
+  "%Name":"obj_enemy_bullet",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_enemy2",
+  "name":"obj_enemy_bullet",
   "overriddenProperties":[],
   "parent":{
     "name":"Enemies",
     "path":"folders/Objects/Characters/Enemies.yy",
   },
-  "parentObjectId":{
-    "name":"obj_enemy_parent",
-    "path":"objects/obj_enemy_parent/obj_enemy_parent.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -33,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_boy_walk",
-    "path":"sprites/spr_boy_walk/spr_boy_walk.yy",
+    "name":"spr_bullet_pistol",
+    "path":"sprites/spr_bullet_pistol/spr_bullet_pistol.yy",
   },
   "spriteMaskId":null,
   "visible":true,

@@ -7,3 +7,6 @@ max_bounces = 1;          // How many times it can bounce before being destroyed
 bounces = max_bounces;
 
 image_angle = direction;  // Rotate sprite to face movement direction
+
+image_xscale = 2;
+image_yscale = 2;

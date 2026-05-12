@@ -6,6 +6,14 @@ paused = false;
 // pause_sequence: The ID of the Sequence element created for the pause menu, used to close it
 // when the player hits Escape to resume
 pause_sequence = -1;
+
+// player health
+global.max_hp = 3;
+global.player_hp = global.max_hp;
+
+show_debug_message("HP: " + string(global.player_hp));
+show_debug_message("Max HP: " + string(global.max_hp));
+
 // in_cave: Tells whether the player is in a cave (true) or not (false), used for ambient audio
 in_cave = false;
 

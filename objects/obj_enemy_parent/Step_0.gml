@@ -18,14 +18,15 @@ if (dist < aggro_range
 	    show_debug_message("Enemy shooting!");
     
 	    var aim_dir = point_direction(x, y, obj_player.x, obj_player.y);
-	    if (random(1) < 0.5) aim_dir += random_range(-30, 30);
+	    if (random(1) < 0.5) aim_dir += random_range(-20, 20);
     
-	    var bullet = instance_create_layer(x, y, "Instances", obj_bullet);  // ← changed layer
+	    var bullet = instance_create_layer(x, y, "Instances", obj_enemy_bullet);  // ← changed layer
     
-	    bullet.hspeed = lengthdir_x(10, aim_dir);
-	    bullet.vspeed = lengthdir_y(10, aim_dir);
+	    bullet.hspeed = lengthdir_x(25, aim_dir);
+	    bullet.vspeed = lengthdir_y(25, aim_dir);
 	    bullet.image_angle = aim_dir;
-	    bullet.distance_travelled = 0;   // reset just in case
+		bullet.image_xscale = 2;
+		bullet.image_yscale = 2;
     
 	    show_debug_message("Bullet created at " + string(bullet.x) + ", " + string(bullet.y));
     

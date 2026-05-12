@@ -17,7 +17,7 @@ else if (vel_x > 0)
 
 // This checks if the character's health is at, or below, 0, meaning it has been defeated.
 // In that case we want to replace the character instance with its defeated object.
-if (hp <= 0)
+if (global.player_hp <= 0 || enemy_hp <= 0)
 {
 	// This creates an instance of the character's 'defeated_object'. E.g. it will be obj_player_defeated
 	// for obj_player.

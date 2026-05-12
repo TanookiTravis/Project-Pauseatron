@@ -30,7 +30,7 @@ grounded_y = y;
 // 'hp' is the actual health of the character.
 // It's initialised at the same value as 'max_hp'.
 max_hp = 3;
-hp = max_hp;
+enemy_hp = 1;
 
 // This variable is used to grant the player invincibility, after it's hit by an enemy or after it falls off ground.
 // It stores the remaining number of frames where the player can't be hurt. If it's 0, it means the player is not invincible.

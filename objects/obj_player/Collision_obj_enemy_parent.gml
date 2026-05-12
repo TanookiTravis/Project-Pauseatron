@@ -12,7 +12,7 @@ if (vel_y > 0)
 	if ((bbox_bottom - vel_y) < (other.bbox_bottom - other.vel_y))
 	{
 		// Set the HP of the 'other' instance (which is the enemy) to 0, so that it's defeated.
-		other.hp = 0;
+		other.enemy_hp = 0;
 	
 		// Set the vertical velocity of the player to -jump_speed so it bounces off the enemy.
 		vel_y = -jump_speed;
@@ -58,7 +58,8 @@ vel_x = _x_sign * 15;
 // This first reduces the player's health by the damage amount in the 'other' instance
 // (which is the enemy).
 // Then it sets 'in_knockback' to true to tell the player that it's in knockback.
-hp -= other.damage;
+global.player_hp -= other.damage;
+enemy_hp -= other.damage;
 in_knockback = true;
 
 // This sets no_hurt_frames to 120, so the player is invincible for the next 2 seconds (as one second contains 60 frames).

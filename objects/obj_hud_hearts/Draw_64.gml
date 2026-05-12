@@ -9,7 +9,7 @@ if (!instance_exists(obj_player))
 var _width = sprite_get_width(spr_hud_heart_empty);
 var _x_pos = 0;
 
-for (var i = obj_player.max_hp; i > 0; --i)
+for (var i = global.max_hp; i > 0; --i)
 {
 	draw_sprite(spr_hud_heart_empty, 0, x + _x_pos, y);
 	
@@ -20,7 +20,7 @@ for (var i = obj_player.max_hp; i > 0; --i)
 _width = sprite_get_width(spr_hud_heart_full);
 _x_pos = 0;
 
-for (var i = obj_player.hp; i > 0; --i) {
+for (var i = global.player_hp; i > 0; --i) {
 	draw_sprite(spr_hud_heart_full, 0, x + _x_pos, y);
 	
 	_x_pos += _width;
