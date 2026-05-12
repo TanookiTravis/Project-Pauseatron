@@ -14,20 +14,23 @@ if (dist < aggro_range
     
     // Shooting
     if (shoot_cooldown <= 0)
-    {
-        var aim_dir = point_direction(x, y, obj_player.x, obj_player.y);
-        
-        // 50% accuracy - add random spread
-        if (random(1) < 0.5)
-            aim_dir += random_range(-25, 25);   // inaccurate shot
-        
-        var bullet = instance_create_layer(x, y, "Bullets", obj_bullet);
-        bullet.direction = aim_dir;
-        bullet.speed = 8;          // adjust as needed
-        bullet.image_angle = bullet.direction;
-        
-        shoot_cooldown = shoot_interval;
-    }
+	{
+	    show_debug_message("Enemy shooting!");
+    
+	    var aim_dir = point_direction(x, y, obj_player.x, obj_player.y);
+	    if (random(1) < 0.5) aim_dir += random_range(-30, 30);
+    
+	    var bullet = instance_create_layer(x, y, "Instances", obj_bullet);  // ← changed layer
+    
+	    bullet.hspeed = lengthdir_x(10, aim_dir);
+	    bullet.vspeed = lengthdir_y(10, aim_dir);
+	    bullet.image_angle = aim_dir;
+	    bullet.distance_travelled = 0;   // reset just in case
+    
+	    show_debug_message("Bullet created at " + string(bullet.x) + ", " + string(bullet.y));
+    
+	    shoot_cooldown = shoot_interval;
+	}
 }
 else
 {
