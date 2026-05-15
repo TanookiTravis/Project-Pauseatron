@@ -5,7 +5,6 @@ event_inherited();
 audio_listener_set_position(0, x, y, 0);
 
 // === GAMEPAD FIRING ===
-
 if (global.gamepad_slot != -1)
 {
     var slot = global.gamepad_slot;
@@ -20,7 +19,6 @@ if (global.gamepad_slot != -1)
         
         if (gamepad_button_check_pressed(slot, gp_shoulderrb))   // R2
         {
-		show_debug_message("DEBUG R2 pressed");
             var bullet = instance_create_layer(
                 x + lengthdir_x(28, aim_dir), 
                 y + lengthdir_y(28, aim_dir), 
@@ -32,8 +30,6 @@ if (global.gamepad_slot != -1)
             bullet.speed = 16;
             bullet.bounces = 4;
             bullet.bounce_factor = 0.90;
-            
-            show_debug_message("DEBUG bullet fired, direction: " + string(aim_dir));
         }
     //}
 }
