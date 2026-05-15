@@ -33,7 +33,7 @@ player_jump = function()
 
 		// This creates an instance of obj_effect_jump at the bottom of the player's mask. This is the
 		// jump VFX animation.
-		instance_create_layer(x, bbox_bottom, "Instances", obj_effect_jump);
+		instance_create_layer(x, bbox_bottom, "Characters", obj_effect_jump);
 	
 		// Play the jump sound with a random pitch
 		var _sound = audio_play_sound(snd_jump, 0, 0);

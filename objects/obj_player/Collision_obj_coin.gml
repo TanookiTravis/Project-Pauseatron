@@ -1,5 +1,6 @@
 // Increase the coins variable of the player by 1
 coins += 1;
+global.player_hp += 1;
 
 // Create an instance of obj_coin_collect_effect at the position of the 'other' instance, which is the
 // coin that the player touched.

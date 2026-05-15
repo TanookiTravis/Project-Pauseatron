@@ -9,7 +9,7 @@ if (!paused)
 	instance_activate_object(obj_gamepad_input);
 
 	// Create the pause menu Sequence and store its ID in a variable so it can be destroyed later
-	pause_sequence = layer_sequence_create("Instances", 0, 0, seq_pause_menu);
+	pause_sequence = layer_sequence_create("Characters", 0, 0, seq_pause_menu);
 
 	// Set 'paused' to true
 	paused = true;

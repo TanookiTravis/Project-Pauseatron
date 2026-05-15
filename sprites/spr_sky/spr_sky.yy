@@ -19,6 +19,7 @@
   "height":900,
   "HTile":false,
   "layers":[
+    {"$GMImageLayer":"","%Name":"27c9b0c9-a7fd-469c-927f-a46e60b33e2f","blendMode":0,"displayName":"dark","isLocked":false,"name":"27c9b0c9-a7fd-469c-927f-a46e60b33e2f","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
     {"$GMImageLayer":"","%Name":"d2a056dc-e00e-401d-9b5c-c0383667b51f","blendMode":0,"displayName":"default","isLocked":false,"name":"d2a056dc-e00e-401d-9b5c-c0383667b51f","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"spr_sky",

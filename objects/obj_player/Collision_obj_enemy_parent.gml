@@ -27,7 +27,7 @@ if (vel_y > 0)
 	
 		// This creates an instance of obj_effect_jump at the bottom of the player's mask. This is the
 		// jump VFX animation.
-		instance_create_layer(x, bbox_bottom, "Instances", obj_effect_jump);
+		instance_create_layer(x, bbox_bottom, "Characters", obj_effect_jump);
 	
 		// Play the enemy hit sound effect
 		audio_play_sound(snd_enemy_hit, 0, 0);
