@@ -43,3 +43,22 @@ else
 }
 
 shoot_cooldown = max(0, shoot_cooldown - 1);
+
+// Stealth kill check
+var behind = false;
+if (image_xscale > 0 && obj_player.x < x - 5) behind = true;        // enemy facing right, player on left
+else if (image_xscale < 0 && obj_player.x > x + 5) behind = true;   // enemy facing left, player on right
+
+var can_stealth = (behind 
+    && point_distance(x, y, obj_player.x, obj_player.y) < 20
+    && !instance_exists(obj_stealth_prompt));
+
+if (can_stealth)
+{
+    // Create prompt above head
+    if (!instance_exists(obj_stealth_prompt))
+    {
+        var prompt = instance_create_layer(x, y-50, "UI", obj_stealth_prompt);
+        prompt.target_enemy = id;
+    }
+}
