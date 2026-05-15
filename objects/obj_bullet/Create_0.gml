@@ -3,7 +3,7 @@ vspeed = 0;
 distance_travelled = 0;
 
 bounce_factor = 0.92;     // 1.0 = perfect energy, lower = loses speed on bounce
-max_bounces = 1;          // How many times it can bounce before being destroyed
+max_bounces = 0;          // How many times it can bounce before being destroyed
 bounces = max_bounces;
 
 image_angle = direction;  // Rotate sprite to face movement direction

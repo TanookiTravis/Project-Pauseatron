@@ -24,7 +24,6 @@ if (global.gamepad_slot != -1)
         // No aiming, shoot direction character is facing
         aim_dir = (image_xscale > 0) ? 0 : 180;
     }
-	show_debug_message("Aim direction: " + string(aim_dir));
         
     if (gamepad_button_check_pressed(slot, gp_shoulderrb))   // R2
     {
@@ -37,7 +36,7 @@ if (global.gamepad_slot != -1)
             
         bullet.direction = aim_dir;
         bullet.speed = 16;
-        bullet.bounces = 4;
+        bullet.bounces = 2;
         bullet.bounce_factor = 0.90;
     }
 }

@@ -1,8 +1,8 @@
 // This reduces the health by 1.
-hp -= 1;
+global.player_hp -= 1;
 
 // If the player still has hp left,
-if (hp > 0)
+if (global.player_hp > 0)
 {
 	// This moves the player to the position stored in the grounded_x and _y variables,
 	// which is the position when it was last on ground.
