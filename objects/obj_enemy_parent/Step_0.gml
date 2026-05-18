@@ -73,7 +73,7 @@ else
         
 	        // Execute stealth kill
 		    if (global.gamepad_slot != -1
-				&& gamepad_button_check_pressed(global.gamepad_slot, gp_face4))
+				&& gamepad_button_check_pressed(global.gamepad_slot, gp_face3))
 		    {
 				audio_play_sound(snd_ankle_breaker, 0, 0);
 		        instance_destroy(obj_prompt_stealth);

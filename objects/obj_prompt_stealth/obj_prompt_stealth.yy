@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_prompt_x",
-    "path":"sprites/spr_prompt_x/spr_prompt_x.yy",
+    "name":"spr_prompt_y",
+    "path":"sprites/spr_prompt_y/spr_prompt_y.yy",
   },
   "spriteMaskId":null,
   "visible":true,
