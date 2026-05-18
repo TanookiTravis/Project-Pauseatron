@@ -41,3 +41,22 @@ if (global.gamepad_slot != -1)
         bullet.bounce_factor = 0.90;
     }
 }
+
+// === Calculate Aim Offset for Camera ===
+aim_offset_x = 0;
+aim_offset_y = 0;
+
+if (global.gamepad_slot != -1)
+{
+    var slot = global.gamepad_slot;
+    var holding_l2 = gamepad_button_check(slot, gp_shoulderlb);
+    var rh = gamepad_axis_value(slot, gp_axisrh);
+    var rv = gamepad_axis_value(slot, gp_axisrv);
+    
+    if (holding_l2 && (abs(rh) > 0.25 || abs(rv) > 0.25))
+    {
+        var aim_dir = point_direction(0, 0, rh, rv);
+        aim_offset_x = lengthdir_x(300, aim_dir);
+        aim_offset_y = lengthdir_y(160, aim_dir);   // less vertical movement
+    }
+}

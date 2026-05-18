@@ -81,3 +81,15 @@ switch (sprite_index)
 		image_speed = 1;
 		break;
 }
+
+// === CAMERA - Left 1/3 + Aim Offset ===
+var cam = view_camera[0];
+var view_w = camera_get_view_width(cam);
+var view_h = camera_get_view_height(cam);
+
+var target_x = x - (view_w * 0.33) + aim_offset_x;
+var target_y = y - (view_h * 0.5) + aim_offset_y;
+
+camera_set_view_pos(cam, 
+    lerp(camera_get_view_x(cam), target_x, 0.15),
+    lerp(camera_get_view_y(cam), target_y, 0.18));

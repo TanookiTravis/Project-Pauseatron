@@ -4,6 +4,10 @@ event_inherited();
 // This variable stores the number of coins the player has collected.
 coins = 0;
 
+// Camera settings
+aim_offset_x = 0;
+aim_offset_y = 0;
+
 // This variable tells whether the player is currently in knockback (from being hit by an enemy). It will be true if it is, and false if not.
 in_knockback = false;
 
