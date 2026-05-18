@@ -11,6 +11,9 @@ pause_sequence = -1;
 global.max_hp = 3;
 global.player_hp = global.max_hp;
 
+//stealth kill
+global.stealth_kill_prompt_margin = 190;
+
 show_debug_message("HP: " + string(global.player_hp));
 show_debug_message("Max HP: " + string(global.max_hp));
 

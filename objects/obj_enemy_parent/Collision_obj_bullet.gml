@@ -6,17 +6,14 @@ show_debug_message("is_headshot: " + string(y) + " > " + string(other.y - other.
 if (is_headshot)
 {
     // Instant kill on headshot
-    show_debug_message("HEADSHOT!");
-	audio_play_sound(snd_ankle_breaker, 0, 0);	
+	audio_play_sound(snd_ankle_breaker, 0, 0);
 	instance_create_layer(x, y, layer, obj_enemy2_dead_headshot);
 	instance_destroy(); // destroy enemy
 }
 else if (enemy_hp > 0)
 {
     // Normal body hit
-    show_debug_message("BODYSHOT! Enemy HP: " + string(enemy_hp));
     enemy_hp -= damage;
-    show_debug_message("Enemy HP after hit: " + string(enemy_hp));
     
     if (enemy_hp <= 0)
     {

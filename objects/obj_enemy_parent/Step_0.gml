@@ -2,8 +2,7 @@ var dist = point_distance(x, y, obj_player.x, obj_player.y);
 var facing_player = (obj_player.x > x && image_xscale > 0) || (obj_player.x < x && image_xscale < 0);
 var dir = point_direction(x, y, obj_player.x, obj_player.y);
 
-var stealth_distance = 200;
-var stealth_prompt_margin = 175;
+var stealth_kill_distance = 200;
 
 // Aggro and Line of Sight check
 if (dist < aggro_range
@@ -43,7 +42,7 @@ else
 	event_inherited();
 	
 	// === STEALTH KILL CHECK ===
-	if (point_distance(x, y, obj_player.x, obj_player.y) < stealth_distance)
+	if (point_distance(x, y, obj_player.x, obj_player.y) < stealth_kill_distance)
 	{
 	    var behind = false;
 	    if (image_xscale > 0 && obj_player.x < x) behind = true;
@@ -57,7 +56,7 @@ else
 	        // Only this enemy should have the prompt
 	        if (!instance_exists(current_prompt))
 	        {
-	            var new_prompt = instance_create_layer(x, y-stealth_prompt_margin, "UI", obj_prompt_stealth);
+	            var new_prompt = instance_create_layer(x, y-global.stealth_kill_prompt_margin, "UI", obj_prompt_stealth);
 	            new_prompt.target = id;
 	        }
 	        else if (current_prompt.target != id)
@@ -67,7 +66,7 @@ else
 	                point_distance(current_prompt.target.x, current_prompt.target.y, obj_player.x, obj_player.y))
 	            {
 	                instance_destroy(current_prompt);
-	                var new_prompt = instance_create_layer(x, y-stealth_prompt_margin, "UI", obj_prompt_stealth);
+	                var new_prompt = instance_create_layer(x, y-global.stealth_kill_prompt_margin, "UI", obj_prompt_stealth);
 	                new_prompt.target = id;
 	            }
 	        }
@@ -76,6 +75,7 @@ else
 		    if (global.gamepad_slot != -1
 				&& gamepad_button_check_pressed(global.gamepad_slot, gp_face4))
 		    {
+				audio_play_sound(snd_ankle_breaker, 0, 0);
 		        instance_destroy(obj_prompt_stealth);
 		        instance_destroy();
 				instance_create_layer(x, y, layer, defeated_object);
@@ -85,7 +85,7 @@ else
 	
 	// Cleanup
 	var p = instance_find(obj_prompt_stealth, 0);
-	if (instance_exists(p) && (!instance_exists(p.target) || point_distance(p.target.x, p.target.y, obj_player.x, obj_player.y) > stealth_distance))
+	if (instance_exists(p) && (!instance_exists(p.target) || point_distance(p.target.x, p.target.y, obj_player.x, obj_player.y) > stealth_kill_distance))
 	{
 	    instance_destroy(p);
 	}
