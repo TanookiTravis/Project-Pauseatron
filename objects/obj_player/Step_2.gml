@@ -82,14 +82,21 @@ switch (sprite_index)
 		break;
 }
 
-// === CAMERA - Left 1/3 + Aim Offset ===
+// === CAMERA + Aim Offset ===
 var cam = view_camera[0];
 var view_w = camera_get_view_width(cam);
 var view_h = camera_get_view_height(cam);
 
-var target_x = x - (view_w * 0.33) + aim_offset_x;
-var target_y = y - (view_h * 0.5) + aim_offset_y;
+var base_x = x - (view_w * 0.33);
 
+// Change this value to move player vertically
+var vertical_offset = 0.6; // ex: 0.6 puts player 60% from the top
+var base_y = y - (view_h * vertical_offset);
+
+var target_x = base_x + aim_offset_x;
+var target_y = base_y + aim_offset_y;
+
+// Smooth camera
 camera_set_view_pos(cam, 
     lerp(camera_get_view_x(cam), target_x, 0.15),
     lerp(camera_get_view_y(cam), target_y, 0.18));
