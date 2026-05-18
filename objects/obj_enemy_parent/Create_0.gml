@@ -6,7 +6,10 @@ damage = 1;
 // This sets the movement speed for the enemies.
 move_speed = 2;
 enemy_hp = 5;
-is_enemy_alert = false;
+enemy_state = "patrol"; // "patrol" or "alert"
+alert_timer = 0;
+shoot_cooldown = 0;
+shoot_interval = 45; // lower = faster shooting
 
 // This applies either move_speed or negative move_speed to the enemy's X velocity. This way the enemy will
 // either move left or right (at random).
