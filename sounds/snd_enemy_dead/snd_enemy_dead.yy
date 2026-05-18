@@ -1,6 +1,6 @@
 {
   "$GMSound":"v2",
-  "%Name":"snd_jump",
+  "%Name":"snd_enemy_dead",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -10,17 +10,17 @@
   "compression":0,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":0.62403625,
+  "duration":0.9287982,
   "exportDir":"",
-  "name":"snd_jump",
+  "name":"snd_enemy_dead",
   "parent":{
-    "name":"Player",
-    "path":"folders/Sounds/SFX/Player.yy",
+    "name":"Gameplay",
+    "path":"folders/Sounds/SFX/Gameplay.yy",
   },
   "preload":false,
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"snd_jump.wav",
-  "volume":0.28,
+  "soundFile":"snd_enemy_dead.mp3",
+  "volume":1.0,
 }

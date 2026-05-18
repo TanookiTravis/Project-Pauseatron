@@ -7,9 +7,6 @@ if (no_hurt_frames > 0)
 	exit;
 }
 
-show_debug_message("HP: " + string(global.player_hp));
-show_debug_message("Max HP: " + string(global.max_hp));
-
 if (global.player_hp > 0)
 {
 	//hp -= 1;

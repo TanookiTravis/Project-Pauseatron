@@ -10,7 +10,6 @@ if (place_meeting(x, y, obj_env_collision))
     while (place_meeting(x, y, obj_env_collision)) x -= sign(hspeed);
     hspeed = -hspeed * bounce_factor;
     bounces--;
-	show_debug_message("BouncesA: " + string(bounces) + "-" + string(max_bounces));
 }
 
 // Vertical Movement + Collision
@@ -20,13 +19,10 @@ if (place_meeting(x, y, obj_env_collision))
     while (place_meeting(x, y, obj_env_collision)) y -= sign(vspeed);
     vspeed = -vspeed * bounce_factor;
     bounces--;
-	show_debug_message("BouncesB: " + string(bounces) + "-" + string(max_bounces));
 }
 
 // Destroy on limits
 distance_travelled += speed;   // or point_distance(_old_x, _old_y, x, y)
-
-show_debug_message("Bounces-max_bounces: " + string(bounces) + "-" + string(max_bounces));
 
 if (distance_travelled > 1300 || bounces <= max_bounces)
 {

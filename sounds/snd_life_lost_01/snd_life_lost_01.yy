@@ -10,7 +10,7 @@
   "compression":1,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":2.229625,
+  "duration":2.2296371,
   "exportDir":"",
   "name":"snd_life_lost_01",
   "parent":{

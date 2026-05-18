@@ -10,7 +10,7 @@
   "compression":1,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":0.767354,
+  "duration":0.7673696,
   "exportDir":"",
   "name":"snd_dirt_block_hit_01",
   "parent":{

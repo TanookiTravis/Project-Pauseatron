@@ -10,7 +10,7 @@
   "compression":1,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":0.640625,
+  "duration":0.64061224,
   "exportDir":"",
   "name":"snd_enemy_hit",
   "parent":{

@@ -5,6 +5,8 @@ damage = 1;
 
 // This sets the movement speed for the enemies.
 move_speed = 2;
+enemy_hp = 5;
+is_enemy_alert = false;
 
 // This applies either move_speed or negative move_speed to the enemy's X velocity. This way the enemy will
 // either move left or right (at random).

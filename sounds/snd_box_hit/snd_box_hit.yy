@@ -10,7 +10,7 @@
   "compression":1,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":1.556312,
+  "duration":1.5563265,
   "exportDir":"",
   "name":"snd_box_hit",
   "parent":{

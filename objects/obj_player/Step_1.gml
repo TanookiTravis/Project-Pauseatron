@@ -8,16 +8,24 @@ if (jump_input)
 	player_jump();	
 }
 
-// Checks for a left input
-if (left_input)
+if (global.gamepad_slot != -1)
 {
-	// Preforms a player left movement
-	player_left();	
-}
+    var holding_l2 = gamepad_button_check(global.gamepad_slot, gp_shoulderlb);
+    
+    if (!holding_l2)
+    {
+		// Checks for a left input
+		if (left_input)
+		{
+			// Preforms a player left movement
+			player_left();	
+		}
 
-// Checks for a right input
-if (right_input)
-{
-	// Preforms a player right movement
-	player_right();	
+		// Checks for a right input
+		if (right_input)
+		{
+			// Preforms a player right movement
+			player_right();	
+		}
+	}
 }
