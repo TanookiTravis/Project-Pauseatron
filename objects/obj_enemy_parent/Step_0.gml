@@ -21,6 +21,7 @@ switch (enemy_state)
                 enemy_state = "alert";
                 alert_timer = 6 * 60;   // seconds at 60fps
             }
+			image_xscale = -1;
         }
         break;
         
@@ -93,7 +94,7 @@ if (dist < stealth_kill_distance)
     }
 }
 
-// Prompt Cleanup
+// Stealth prompt cleanup
 var p = instance_find(obj_prompt_stealth, 0);
 if (instance_exists(p) && (!instance_exists(p.target) || 
     point_distance(p.target.x, p.target.y, obj_player.x, obj_player.y) > stealth_kill_distance))
