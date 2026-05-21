@@ -56,5 +56,50 @@ switch (enemy_state)
 	    break;
 }
 
+// === STEALTH KILL CHECK (runs in BOTH states) ===
+var dist = point_distance(x, y, obj_player.x, obj_player.y);
+if (dist < stealth_kill_distance)
+{
+    var behind = false;
+    if (image_xscale > 0 && obj_player.x < x) behind = true;
+    else if (image_xscale < 0 && obj_player.x > x) behind = true;
+   
+    if (behind)
+    {
+        var current_prompt = instance_find(obj_prompt_stealth, 0);
+        
+        if (!instance_exists(current_prompt))
+        {
+            var new_prompt = instance_create_layer(x, y-global.stealth_kill_prompt_margin, "UI", obj_prompt_stealth);
+            new_prompt.target = id;
+        }
+        else if (current_prompt.target != id)
+        {
+            if (dist < point_distance(current_prompt.target.x, current_prompt.target.y, obj_player.x, obj_player.y))
+            {
+                instance_destroy(current_prompt);
+                var new_prompt = instance_create_layer(x, y-global.stealth_kill_prompt_margin, "UI", obj_prompt_stealth);
+                new_prompt.target = id;
+            }
+        }
+       
+        if (global.gamepad_slot != -1 && gamepad_button_check_pressed(global.gamepad_slot, gp_face3))
+        {
+            audio_play_sound(snd_ankle_breaker, 0, 0);
+            instance_destroy(obj_prompt_stealth);
+            instance_destroy();
+            instance_create_layer(x, y, layer, defeated_object);
+        }
+    }
+}
+
+// Prompt Cleanup
+var p = instance_find(obj_prompt_stealth, 0);
+if (instance_exists(p) && (!instance_exists(p.target) || 
+    point_distance(p.target.x, p.target.y, obj_player.x, obj_player.y) > stealth_kill_distance))
+{
+    instance_destroy(p);
+}
+
 // Cooldown
 shoot_cooldown = max(0, shoot_cooldown - 1);
