@@ -33,21 +33,21 @@ repeat (_move_count)
 
 // We now repeat all of the previous steps to check for collisions on the Y axis.
 // Everything is the same, but vel_x is replaced by vel_y, and the check_collision function takes a Y value (its second argument).
-var _move_count = abs(vel_y);
-var _move_once = sign(vel_y);
+var _move_count_y = abs(vel_y);
+var _move_once_y = sign(vel_y);
 
 // This runs a loop, which runs 'move_count' times. All actions attached to this are repeated that many amount of times.
-repeat (_move_count)
+repeat (_move_count_y)
 {
 	// This calls the check_collision function to check for collisions on the Y axis, if moved by the move_once value.
 	// The result of the function, either true or false, is stored in the 'collision_found' variable, which is temporary.
-	var _collision_found = check_collision(0, _move_once);
+	var _collision_found = check_collision(0, _move_once_y);
 
 	// This checks if collision_found is false, meaning a collision was not found, and the player is free to move once on the Y axis.
 	if (!_collision_found)
 	{
 		// In that case, move_once is added to the Y coordinate of the character.
-		y += _move_once;
+		y += _move_once_y;
 	}
 	// This 'else' block runs if a collision was found.
 	else

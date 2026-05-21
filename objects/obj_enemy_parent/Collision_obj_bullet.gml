@@ -18,6 +18,9 @@ else if (enemy_hp > 0)
 		audio_play_sound(snd_enemy_dead, 0, 0);
 		instance_create_layer(x, y, layer, defeated_object);
 		instance_destroy();
-    }
+    } else {
+		enemy_state = "alert";
+        alert_timer = 6 * 60;   // seconds at 60fps
+	}
 }
 instance_destroy(obj_bullet);
