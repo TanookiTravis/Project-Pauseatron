@@ -104,29 +104,30 @@ camera_set_view_pos(cam,
 // === GRAPPLE PULL ===
 if (grapple_state == "pulling" && grapple_target != noone)
 {
-	var target_top = grapple_target.bbox_top;
-    
-    y -= 48;
-    
-    if (y <= target_top - 18)
+    var target_top = grapple_target.bbox_top;
+    var pull_speed = 18;
+
+    // Check if the player's center/feet are now at or above the target top
+    if (y <= target_top + pull_speed)
     {
-        y = target_top - sprite_height/2 - 10;
+        y = target_top - (sprite_height / 2) - 2; 
+        
+        // Small upward boost to clear the grapple surface
         vel_y = -7;
         
-        // PROPER CLEANUP
         grapple_state = "idle";
         grapple_target = noone;
         
-        if (instance_exists(obj_grapple)) instance_destroy(obj_grapple);
+        if (instance_exists(obj_grapple)) {
+            instance_destroy(obj_grapple);
+        }
     }
-}
-
-// Grapple Cleanup
-if ((grapple_state == "pulling" && !instance_exists(obj_grapple)) || grapple_state == "shooting")
-{
-    if (!instance_exists(obj_grapple))
+    else
     {
-        grapple_state = "idle";
-        grapple_target = noone;
+        // Only move up if we haven't reached the top yet
+        y -= pull_speed;
+        
+        // Zero out velocity so gravity doesn't fight the pull 
+        vel_y = 0; 
     }
 }

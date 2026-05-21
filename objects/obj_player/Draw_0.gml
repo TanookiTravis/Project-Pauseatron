@@ -23,8 +23,9 @@ if (global.gamepad_slot != -1)
             aim_dir = (image_xscale > 0) ? 0 : 180;
         }
         
+		var vertical_offset = 64;
         var start_x = x + lengthdir_x(28, aim_dir);
-        var start_y = y + lengthdir_y(28, aim_dir);
+        var start_y = (y - vertical_offset) + lengthdir_y(28, aim_dir);
         var end_x   = start_x + lengthdir_x(200, aim_dir);
         var end_y   = start_y + lengthdir_y(200, aim_dir);
         

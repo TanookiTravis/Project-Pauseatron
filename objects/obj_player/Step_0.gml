@@ -11,7 +11,7 @@ if (global.gamepad_slot != -1)
    
     var right_h = gamepad_axis_value(slot, gp_axisrh);
     var right_v = gamepad_axis_value(slot, gp_axisrv);
-    var holding_l2 = gamepad_button_check(slot, gp_shoulderlb);
+    var holding_l2 = gamepad_button_check(slot, gp_shoulderlb);  
    
     var aim_dir;
    
@@ -28,15 +28,16 @@ if (global.gamepad_slot != -1)
    
     if (gamepad_button_check_pressed(slot, gp_shoulderrb)) // R2
     {
+		var vertical_offset = 64;
         var bullet = instance_create_layer(
             x + lengthdir_x(28, aim_dir),
-            y + lengthdir_y(28, aim_dir),
+            (y - vertical_offset) + lengthdir_y(28, aim_dir),
             "Bullets",
             obj_bullet
         );
            
         bullet.direction = aim_dir;
-        bullet.speed = 16;
+        bullet.speed = 25;
         bullet.bounces = 1;
         bullet.bounce_factor = 0.90;
     }
@@ -70,5 +71,6 @@ if (global.gamepad_slot != -1 && gamepad_button_check_pressed(global.gamepad_slo
         var g = instance_create_layer(x, y-20, "Bullets", obj_grapple);
         g.start_x = x;
         g.start_y = y-20;
+		alarm[1] = 120;
     }
 }
