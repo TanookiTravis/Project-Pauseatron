@@ -14,6 +14,10 @@ in_knockback = false;
 // This is the object that replaces the player once it is defeated.
 defeated_object = obj_player_defeated;
 
+// Grapple hook
+grapple_state = "idle";
+grapple_target = noone;
+
 // Flag for if a jump is detected
 jump_input = false;
 

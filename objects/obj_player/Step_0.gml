@@ -60,3 +60,15 @@ if (global.gamepad_slot != -1)
         aim_offset_y = lengthdir_y(160, aim_dir);   // less vertical movement
     }
 }
+
+// === GRAPPLE HOOK INPUT ===
+if (global.gamepad_slot != -1 && gamepad_button_check_pressed(global.gamepad_slot, gp_face4))
+{
+    if (grapple_state == "idle" && !instance_exists(obj_grapple))
+    {
+        grapple_state = "shooting";
+        var g = instance_create_layer(x, y-20, "Bullets", obj_grapple);
+        g.start_x = x;
+        g.start_y = y-20;
+    }
+}

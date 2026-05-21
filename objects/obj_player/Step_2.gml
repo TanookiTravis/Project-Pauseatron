@@ -89,7 +89,7 @@ var view_h = camera_get_view_height(cam);
 
 var base_x = x - (view_w * 0.33);
 
-// Change this value to move player vertically
+// Change this value to adjust player position vertically in viewport
 var vertical_offset = 0.6; // ex: 0.6 puts player 60% from the top
 var base_y = y - (view_h * vertical_offset);
 
@@ -100,3 +100,33 @@ var target_y = base_y + aim_offset_y;
 camera_set_view_pos(cam, 
     lerp(camera_get_view_x(cam), target_x, 0.15),
     lerp(camera_get_view_y(cam), target_y, 0.18));
+	
+// === GRAPPLE PULL ===
+if (grapple_state == "pulling" && grapple_target != noone)
+{
+	var target_top = grapple_target.bbox_top;
+    
+    y -= 48;
+    
+    if (y <= target_top - 18)
+    {
+        y = target_top - sprite_height/2 - 10;
+        vel_y = -7;
+        
+        // PROPER CLEANUP
+        grapple_state = "idle";
+        grapple_target = noone;
+        
+        if (instance_exists(obj_grapple)) instance_destroy(obj_grapple);
+    }
+}
+
+// Grapple Cleanup
+if ((grapple_state == "pulling" && !instance_exists(obj_grapple)) || grapple_state == "shooting")
+{
+    if (!instance_exists(obj_grapple))
+    {
+        grapple_state = "idle";
+        grapple_target = noone;
+    }
+}

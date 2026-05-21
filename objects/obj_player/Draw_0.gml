@@ -36,3 +36,28 @@ if (global.gamepad_slot != -1)
         draw_set_color(c_white);
     }
 }
+
+// === GRAPPLE SHRINKING ROPE ===
+var rope_start_x = x;
+var rope_start_y = y - 20;
+if (grapple_state == "pulling" && grapple_target != noone)
+{
+    var attach_x = grapple_target.x;
+    var attach_y = grapple_target.bbox_top;
+    
+    var visual_start_y = lerp(rope_start_y, attach_y, 0.4); // higher = faster shrinking rope
+    
+    draw_set_color(c_ltgray);
+    draw_set_alpha(0.8);
+    draw_line_width(rope_start_x, visual_start_y, attach_x, attach_y, 2);
+    draw_set_alpha(1);
+} else if (grapple_state == "shooting")
+{    
+    if (instance_exists(obj_grapple))
+    {
+        draw_set_color(c_ltgray);
+        draw_set_alpha(0.8);
+        draw_line_width(rope_start_x, rope_start_y, obj_grapple.x, obj_grapple.y, 2);
+        draw_set_alpha(1);
+    }
+}
