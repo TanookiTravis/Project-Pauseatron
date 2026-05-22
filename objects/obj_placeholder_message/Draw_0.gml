@@ -3,7 +3,7 @@ draw_self();
 
 // This section draws the text stored in the 'text' variable, initialised in the Variable Definitions window.
 // This changes the font to ft_hud.
-draw_set_font(ft_hud);
+draw_set_font(fnt_hud);
 
 // This changes the alignment to center-middle.
 draw_set_halign(fa_center);

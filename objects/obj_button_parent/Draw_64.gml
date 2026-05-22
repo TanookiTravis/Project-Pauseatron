@@ -2,7 +2,7 @@
 draw_self();
 
 // Change the font
-draw_set_font(ft_button);
+draw_set_font(fnt_button);
 
 // Change the color to the text color set in the Create event
 draw_set_colour(text_color);

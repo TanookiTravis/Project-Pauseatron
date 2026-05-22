@@ -20,6 +20,6 @@ friction_power = 0;
 
 // handle player detection and shooting
 shoot_cooldown = 0;
-shoot_interval = 50;     // ~every 45 steps (~0.75s at 60fps)
+shoot_interval = 40;     // ~every x steps (~0.75s at 60fps)
 aggro_range = 900;
-accuracy = 0.5;          // 50% accuracy
+accuracy = 0.6;          // 50% accuracy

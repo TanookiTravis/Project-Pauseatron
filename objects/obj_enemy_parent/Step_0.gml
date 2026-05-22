@@ -30,6 +30,8 @@ switch (enemy_state)
         sprite_index = spr_boy_investigating;
         image_speed = 0.7;                    // slightly slower walk
         hspeed = 1.5 * sign(obj_player.x - x); // walk slowly toward player
+		
+		show_speech(id, "What was that?", 90);
         
         // Still has LOS?
         if (dist < aggro_range && !collision_line(x, y, obj_player.x, obj_player.y, obj_env_collision, false, true))
@@ -56,6 +58,11 @@ switch (enemy_state)
         hspeed = 0;
         image_speed = 0;
         image_index = 0;
+		
+		// Examples:
+		show_speech(id, "There you are!", 120);           // 2 seconds
+		//show_speech(obj_player, "Got you!", 90);
+		//show_speech(other, "!!", 60);
         
         // Face the player
         if (obj_player.x < x) {
@@ -84,6 +91,7 @@ switch (enemy_state)
         alert_timer--;
         if (alert_timer <= 0)
         {
+			show_speech(id, "Hmm, it was nothing", 120);
             enemy_state = "patrol";
             alert_timer = 0;
         }

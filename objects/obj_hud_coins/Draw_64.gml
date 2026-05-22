@@ -9,7 +9,7 @@ if (!instance_exists(obj_player))
 draw_self();
 
 // This font will now be used for drawing text
-draw_set_font(ft_hud);
+draw_set_font(fnt_hud);
 
 // Draw the player's coins value to the right of this instance
 draw_text(x + 54, y, "x" + string(obj_player.coins));
