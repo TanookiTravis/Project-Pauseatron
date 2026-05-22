@@ -25,11 +25,11 @@ aggro_range = 900;
 accuracy = 0.6;          // 50% accuracy
 
 patrol_lines = [
-	"It was nothing.",
+	"It was nothing",
 	"Just a mouse?",
-	"Meh, whatever.",
-	"Nothing I guess.",
-	"Must be the wind."
+	"Meh, whatever",
+	"Nothing I guess",
+	"Must be the wind"
 ];
 investigating_lines = [
 	"What was that?",
@@ -40,10 +40,18 @@ investigating_lines = [
 	"I swear I saw something..."
 ];
 headshot_lines = [
-	"Oh yeahhh.",
-	"Got him.",
-	"I'm your huckleberry.",
-	"Hasta la vista.",
+	"Oh yeahhh",
+	"Got him",
+	"I'm your huckleberry",
+	"Hasta la vista",
 	"Vaya con Dios",
-	"See ya."
+	"See ya"
+];
+stealth_kill_lines = [
+	"Silent but deadly",
+	"Never saw it coming",
+	"Shhhhh",
+	"Doooown, good boy",
+	"Quiet now",
+	"Rest in peace"
 ];

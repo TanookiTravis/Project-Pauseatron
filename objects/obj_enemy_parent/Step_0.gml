@@ -127,6 +127,8 @@ if (dist < stealth_kill_distance)
             instance_destroy(obj_prompt_stealth);
             instance_destroy();
             instance_create_layer(x, y, layer, defeated_object);
+			var stealth_kill_line = stealth_kill_lines[irandom(array_length(stealth_kill_lines)-1)];
+			show_speech(obj_player, stealth_kill_line, 60);
         }
     }
 }
