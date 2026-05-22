@@ -7,6 +7,8 @@ if (is_headshot)
 	audio_play_sound(snd_ankle_breaker, 0, 0);
 	instance_create_layer(x, y, layer, obj_enemy2_dead_headshot);
 	instance_destroy();
+	var headshot_line = headshot_lines[irandom(array_length(headshot_lines)-1)];
+	show_speech(obj_player, headshot_line, 60);
 }
 else if (enemy_hp > 0)
 {

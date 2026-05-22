@@ -23,3 +23,27 @@ shoot_cooldown = 0;
 shoot_interval = 40;     // ~every x steps (~0.75s at 60fps)
 aggro_range = 900;
 accuracy = 0.6;          // 50% accuracy
+
+patrol_lines = [
+	"It was nothing.",
+	"Just a mouse?",
+	"Meh, whatever.",
+	"Nothing I guess.",
+	"Must be the wind."
+];
+investigating_lines = [
+	"What was that?",
+	"Huh?",
+	"Who's there?",
+	"Did you hear that?",
+	"Hmm...",
+	"I swear I saw something..."
+];
+headshot_lines = [
+	"Oh yeahhh.",
+	"Got him.",
+	"I'm your huckleberry.",
+	"Hasta la vista.",
+	"Vaya con Dios",
+	"See ya."
+];

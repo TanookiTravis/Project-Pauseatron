@@ -3,6 +3,8 @@
 /// @param {String} text           The text to display
 /// @param {Real} duration         How long to show (in frames). Default 180 (3 sec)
 
+// usage: show_speech(obj_player, "Oh nice", 120);
+
 function show_speech(target, text, duration = 180)
 {
     if (!instance_exists(target)) return;
