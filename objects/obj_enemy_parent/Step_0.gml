@@ -1,6 +1,7 @@
 //var dist = point_distance(x, y, obj_player.x, obj_player.y);
 //var facing_player = (obj_player.x > x && image_xscale > 0) || (obj_player.x < x && image_xscale < 0);
 var dir = point_direction(x, y, obj_player.x, obj_player.y);
+var dist = point_distance(x, y, obj_player.x, obj_player.y);
 var stealth_kill_distance = 200;
 
 // === STATE MACHINE ===
@@ -9,62 +10,87 @@ switch (enemy_state)
     case "patrol":
         sprite_index = spr_boy_walk;
         image_speed = 1;
+        hspeed = 1;
         event_inherited(); // normal patrol movement
         
-        // Check if enemy should be alert
-        var dist = point_distance(x, y, obj_player.x, obj_player.y);
+        // First time spotting player
         if (dist < aggro_range)
         {
             var facing_player = (obj_player.x > x && image_xscale > 0) || (obj_player.x < x && image_xscale < 0);
             if (facing_player && !collision_line(x, y, obj_player.x, obj_player.y, obj_env_collision, false, true))
             {
-                enemy_state = "alert";
-                alert_timer = 6 * 60;   // seconds at 60fps
+                enemy_state = "investigating";
+                alert_timer = 1.8 * 60;   // seconds to confirm
+                show_debug_message("Enemy started investigating");
             }
         }
         break;
+       
+    case "investigating":
+        sprite_index = spr_boy_investigating;
+        image_speed = 0.7;                    // slightly slower walk
+        hspeed = 1.5 * sign(obj_player.x - x); // walk slowly toward player
         
-	    case "alert":
-	    sprite_index = spr_boy_spotted;
-	    hspeed = 0;
-	    image_speed = 0;
-	    image_index = 0;
-		
-		show_debug_message("Alert: " + string(image_xscale) + ", " + string(obj_player.x) + " < " + string(x));
-		if (obj_player.x < x) {
-	        image_xscale = -abs(image_yscale);
-	    } else {
-	        image_xscale = abs(image_yscale);
-	    }
-    
-	    // Shooting
-	    if (shoot_cooldown <= 0)
-	    {
-	        var aim_dir = point_direction(x, y, obj_player.x, obj_player.y);
-	        if (random(1) < 0.5) aim_dir += random_range(-20, 20);
+        // Still has LOS?
+        if (dist < aggro_range && !collision_line(x, y, obj_player.x, obj_player.y, obj_env_collision, false, true))
+        {
+            alert_timer--;
+            
+            if (alert_timer <= 0)
+            {
+                enemy_state = "alert";
+                alert_timer = 6 * 60;   // full alert duration
+                show_debug_message("Enemy entered full alert");
+            }
+        }
+        else
+        {
+            // Lost sight → back to patrol
+            enemy_state = "patrol";
+            show_debug_message("Enemy entered patrol");
+        }
+        break;
+       
+    case "alert":
+        sprite_index = spr_boy_spotted;
+        hspeed = 0;
+        image_speed = 0;
+        image_index = 0;
+        
+        // Face the player
+        if (obj_player.x < x) {
+            image_xscale = -abs(image_xscale);
+        } else {
+            image_xscale = abs(image_xscale);
+        }
    
-	        var bullet = instance_create_layer(x, y, "Bullets", obj_enemy_bullet);
-	        bullet.hspeed = lengthdir_x(25, aim_dir);
-	        bullet.vspeed = lengthdir_y(25, aim_dir);
-	        bullet.image_angle = aim_dir;
-	        bullet.image_xscale = 2;
-	        bullet.image_yscale = 2;
+        // Shooting
+        if (shoot_cooldown <= 0)
+        {
+            var aim_dir = point_direction(x, y, obj_player.x, obj_player.y);
+            if (random(1) < 0.5) aim_dir += random_range(-20, 20);
+  
+            var bullet = instance_create_layer(x, y, "Bullets", obj_enemy_bullet);
+            bullet.hspeed = lengthdir_x(25, aim_dir);
+            bullet.vspeed = lengthdir_y(25, aim_dir);
+            bullet.image_angle = aim_dir;
+            bullet.image_xscale = 2;
+            bullet.image_yscale = 2;
+  
+            shoot_cooldown = shoot_interval;
+        }
    
-	        shoot_cooldown = shoot_interval;
-	    }
-    
-	    // Timer countdown - always runs while in alert
-	    alert_timer--;
-	    if (alert_timer <= 0)
-	    {
-	        enemy_state = "patrol";
-	        alert_timer = 0;
-	    }
-	    break;
+        // Timer countdown
+        alert_timer--;
+        if (alert_timer <= 0)
+        {
+            enemy_state = "patrol";
+            alert_timer = 0;
+        }
+        break;
 }
 
 // === STEALTH KILL CHECK (runs in BOTH states) ===
-var dist = point_distance(x, y, obj_player.x, obj_player.y);
 if (dist < stealth_kill_distance)
 {
     var behind = false;
