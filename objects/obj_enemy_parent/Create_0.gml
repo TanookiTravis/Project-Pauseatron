@@ -6,7 +6,7 @@ damage = 1;
 // This sets the movement speed for the enemies.
 move_speed = 2;
 enemy_hp = 5;
-enemy_state = "patrol"; // "patrol" or "alert"
+enemy_state = "patrol"; // "patrol" or "alert" or "investigating"
 alert_timer = 0;
 shoot_cooldown = 0;
 shoot_interval = 45; // lower = faster shooting

@@ -177,6 +177,7 @@
     {"id":{"name":"spr_block_coins_inactive","path":"sprites/spr_block_coins_inactive/spr_block_coins_inactive.yy",},},
     {"id":{"name":"spr_boy_dead","path":"sprites/spr_boy_dead/spr_boy_dead.yy",},},
     {"id":{"name":"spr_boy_headshot","path":"sprites/spr_boy_headshot/spr_boy_headshot.yy",},},
+    {"id":{"name":"spr_boy_investigating","path":"sprites/spr_boy_investigating/spr_boy_investigating.yy",},},
     {"id":{"name":"spr_boy_shield","path":"sprites/spr_boy_shield/spr_boy_shield.yy",},},
     {"id":{"name":"spr_boy_spotted","path":"sprites/spr_boy_spotted/spr_boy_spotted.yy",},},
     {"id":{"name":"spr_boy_walk","path":"sprites/spr_boy_walk/spr_boy_walk.yy",},},
