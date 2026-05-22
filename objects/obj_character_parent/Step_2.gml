@@ -1,18 +1,20 @@
 // This section flips the character's sprite depending on whether it's moving left or right.
 // This condition checks if the X velocity is less than 0, meaning the character is moving left.
-if (vel_x < 0)
-{
-	// In that case, the horizontal scale of the instance is set to -1. This flips the sprite the other way around,
-	// making it face left.
-	image_xscale = -1;
-	image_yscale = 1;
+var is_alert = false;
+if (variable_instance_exists(id, "enemy_state")) {
+    if (enemy_state == "alert") is_alert = true;
 }
-// Otherwise - if the character is not moving left, this checks if the X velocity is greater than 0, meaning the character is moving right.
-else if (vel_x > 0)
-{
-	// In that case, the horizontal scale is set to 1, so the character faces right again.
-	image_xscale = 1;
-	image_yscale = 1;
+
+if (!is_alert) {
+	if (vel_x < 0)
+	{
+		image_xscale = -1;
+		image_yscale = 1;
+	} else if (vel_x > 0)
+	{
+		image_xscale = 1;
+		image_yscale = 1;
+	}
 }
 
 // This checks if the character's health is at, or below, 0, meaning it has been defeated.

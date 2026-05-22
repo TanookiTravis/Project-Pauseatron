@@ -31,9 +31,11 @@ switch (enemy_state)
 	    image_index = 0;
 		
 		show_debug_message("Alert: " + string(image_xscale) + ", " + string(obj_player.x) + " < " + string(x));
-		//image_xscale = -abs(image_xscale);
-		//if (image_xscale > 0 && obj_player.x < x) image_xscale = -1;
-		//else if (image_xscale < 0 && obj_player.x > x) image_xscale = 1;
+		if (obj_player.x < x) {
+	        image_xscale = -abs(image_yscale);
+	    } else {
+	        image_xscale = abs(image_yscale);
+	    }
     
 	    // Shooting
 	    if (shoot_cooldown <= 0)
