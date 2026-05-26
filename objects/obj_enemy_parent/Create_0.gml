@@ -39,19 +39,20 @@ investigating_lines = [
 	"Hmm...",
 	"I swear I saw something..."
 ];
-headshot_lines = [
-	"Oh yeahhh",
-	"Got him",
-	"I'm your huckleberry",
-	"Hasta la vista",
-	"Vaya con Dios",
-	"See ya"
-];
+//headshot_lines = [
+//	"Oh yeahhh",
+//	"Got him",
+//	"I'm your huckleberry",
+//	"Hasta la vista",
+//	"Vaya con Dios",
+//	"See ya"
+//];
 stealth_kill_lines = [
 	"Silent but deadly",
 	"Never saw it coming",
 	"Shhhhh",
 	"Doooown, good boy",
 	"Quiet now",
+	"Nighty night",
 	"Rest in peace"
 ];

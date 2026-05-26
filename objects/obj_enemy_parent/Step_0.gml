@@ -17,7 +17,7 @@ switch (enemy_state)
         if (dist < aggro_range)
         {
             var facing_player = (obj_player.x > x && image_xscale > 0) || (obj_player.x < x && image_xscale < 0);
-            if (facing_player && !collision_line(x, y, obj_player.x, obj_player.y, obj_env_collision, false, true))
+            if (facing_player && !collision_line(x, y, obj_player.x, obj_player.y + obj_player.detection_y_offset, obj_env_collision, false, true))
             {
                 enemy_state = "investigating";
                 alert_timer = 1.8 * 60;   // seconds to confirm
@@ -35,7 +35,7 @@ switch (enemy_state)
 		show_speech(id, investigating_line, 90);
         
         // Still has LOS?
-        if (dist < aggro_range && !collision_line(x, y, obj_player.x, obj_player.y, obj_env_collision, false, true))
+        if (dist < aggro_range && !collision_line(x, y, obj_player.x, obj_player.y + obj_player.detection_y_offset, obj_env_collision, false, true))
         {
             alert_timer--;
             
