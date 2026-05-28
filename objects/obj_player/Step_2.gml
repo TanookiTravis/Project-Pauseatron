@@ -73,6 +73,21 @@ switch (sprite_index)
 			_dust.image_xscale = image_xscale;
 		}
 		break;
+		
+    case spr_player_crouch:
+	    image_speed = 0;
+    
+	    // Drop through bridge on jump press
+	    if (global.gamepad_slot != -1 && gamepad_button_check_pressed(global.gamepad_slot, gp_face1))
+	    {
+	        if (place_meeting(x, y + 6, obj_bridge))
+	        {
+	            show_debug_message("Crouch drop triggered, data: " + string(id.sprite_height));
+	            y += id.sprite_height - 25; // downward nudge
+	            vel_y = 10; // downward velocity
+	        }
+	    }
+	    break;
 
 	// 'default' code runs when none of the other cases are valid, meaning the currently assigned sprite is not covered by any
 	// of the cases above.

@@ -4,7 +4,7 @@ event_inherited();
 // with audio emitters (such as in obj_end_gate)
 audio_listener_set_position(0, x, y, 0);
 
-// === CROUCHING ===
+// === CROUCH TOGGLE ===
 var left_v = gamepad_axis_value(global.gamepad_slot, gp_axislv);
 var crouch_input = (left_v > 0.65);
 
@@ -14,7 +14,7 @@ if (crouch_input)
     {
         is_crouching = true;
         sprite_index = spr_player_crouch;
-        detection_y_offset = 18;     // adjust this (higher = lower detection point)
+        detection_y_offset = 18;
     }
 }
 else if (is_crouching)

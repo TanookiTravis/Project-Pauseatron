@@ -8,8 +8,9 @@ coins = 0;
 aim_offset_x = 0;
 aim_offset_y = 0;
 
-// Crouching
+// Crouching, dropping through floors
 is_crouching = false;
+drop_through_active = false;
 detection_y_offset = 0;
 
 // This variable tells whether the player is currently in knockback (from being hit by an enemy). It will be true if it is, and false if not.

@@ -20,7 +20,7 @@ for (var i = global.max_hp; i > 0; --i)
 _width = sprite_get_width(spr_hud_heart_full);
 _x_pos = 0;
 
-for (var i = global.player_hp; i > 0; --i) {
+for (var i = global.player_hp; i > global.max_hp; --i) {
 	draw_sprite(spr_hud_heart_full, 0, x + _x_pos, y);
 	
 	_x_pos += _width;

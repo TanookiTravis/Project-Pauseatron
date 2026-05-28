@@ -97,13 +97,14 @@ if (gamepad != undefined)
 		// This input is used for jumping.
 		if (gamepad_button_check_pressed(gamepad, gp_face1))
 		{
-			// This block applies to obj_player.
-			// It runs the jump function in it, causing the player to jump.
-			with (obj_player)
-			{
-				// Sets jump input flag to true
-				jump_input = true;
-			}
+		    with (obj_player)
+		    {
+		        // Only allow normal jump if NOT trying to drop through a bridge
+		        if (!(is_crouching && place_meeting(x, y+6, obj_bridge)))
+		        {
+		            jump_input = true;
+		        }
+		    }
 		}
 	}
 
