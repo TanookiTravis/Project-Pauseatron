@@ -14,3 +14,6 @@ if (place_meeting(x - 1, y, obj_bridge))
 		image_index = 0;
 	}
 }
+
+// Fix bridge-to-tile seam - nudge bridge down to match tile height
+y -= 1;
