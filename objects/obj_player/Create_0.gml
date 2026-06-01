@@ -13,6 +13,11 @@ is_crouching = false;
 drop_through_active = false;
 detection_y_offset = 0;
 
+// Hanging
+is_hanging = false;
+hang_x = 0;
+hang_y = 0;
+
 // Reloading
 ammo = 6;
 max_ammo = 6;

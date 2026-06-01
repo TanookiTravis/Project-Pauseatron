@@ -138,6 +138,77 @@ if (global.gamepad_slot != -1)
     }
 }
 
+// === LEDGE GRAB ===
+if (!is_hanging && vel_y != 0) // only while in the air
+{
+    var dir = sign(vel_x);
+    if (dir == 0) dir = image_xscale;
+    
+    // Check for side contact with a potential ledge
+    if (place_meeting(x + dir * 16, y, obj_env_collision))
+    {
+        // Head must have space above the ledge
+        if (!place_meeting(x, y - 32, obj_env_collision))
+        {
+            // Must be empty space below the ledge
+            var ground_below = collision_line(x-4, y + 20, x+4, y + 320, obj_env_collision, true, true);
+            
+            if (ground_below == noone) // completely clear below
+            {
+                is_hanging = true;
+                sprite_index = spr_player_hang;
+                image_speed = 0;
+                image_index = 0;
+                
+                hang_x = x;
+                hang_y = y - 6;
+                
+                vel_x = 0;
+                vel_y = 0;
+            }
+        }
+    }
+}
+
+// === HANGING STATE ===
+if (is_hanging)
+{
+    x = hang_x;
+    y = hang_y;
+    vel_x = 0;
+    vel_y = 0;
+    
+    // Drop down
+    if (left_v > 0.6)
+    {
+        is_hanging = false;
+        vel_y = 5;
+    }
+    
+    // Climb up
+    if (left_v < -0.6)
+    {
+        is_hanging = false;
+        sprite_index = spr_player_walk;
+        image_speed = 1;
+        
+        var target_x = x + 40 * image_xscale;
+        var target_y = y - sprite_height + 60;
+        
+        if (!place_meeting(target_x, target_y, obj_env_collision))
+        {
+            x = target_x;
+            y = target_y;
+            vel_y = -7;
+        }
+        else
+        {
+            // blocked above → drop instead
+            vel_y = 6;
+        }
+    }
+}
+
 // === GRAPPLE HOOK INPUT ===
 if (global.gamepad_slot != -1 && gamepad_button_check_pressed(global.gamepad_slot, gp_face4))
 {
