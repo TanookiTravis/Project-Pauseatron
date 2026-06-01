@@ -28,38 +28,54 @@ else if (is_crouching)
 if (global.gamepad_slot != -1)
 {
     var slot = global.gamepad_slot;
-   
     var right_h = gamepad_axis_value(slot, gp_axisrh);
     var right_v = gamepad_axis_value(slot, gp_axisrv);
-    var holding_l2 = gamepad_button_check(slot, gp_shoulderlb);  
-   
-    var aim_dir;
-   
+    var holding_l2 = gamepad_button_check(slot, gp_shoulderlb);
+  
+    var aim_dir = (image_xscale > 0) ? 0 : 180;
+  
     if (holding_l2 && (abs(right_h) > 0.25 || abs(right_v) > 0.25))
     {
-        // Precise aiming only when holding L2
         aim_dir = point_direction(0, 0, right_h, right_v);
     }
-    else
+  
+    // Shooting (only if not reloading and has ammo)
+    if (!is_reloading && ammo > 0 && gamepad_button_check_pressed(slot, gp_shoulderrb))
     {
-        // Normal mode - always shoot facing direction
-        aim_dir = (image_xscale > 0) ? 0 : 180;
-    }
-   
-    if (gamepad_button_check_pressed(slot, gp_shoulderrb)) // R2
-    {
-		var vertical_offset = 64;
+        var vertical_offset = 80;
         var bullet = instance_create_layer(
             x + lengthdir_x(28, aim_dir),
             (y - vertical_offset) + lengthdir_y(28, aim_dir),
             "Bullets",
             obj_bullet
         );
-           
+          
         bullet.direction = aim_dir;
         bullet.speed = 25;
         bullet.bounces = 1;
         bullet.bounce_factor = 0.90;
+        
+        ammo--;
+    }
+    
+    // Reload with button
+    if (!is_reloading && ammo < max_ammo && gamepad_button_check_pressed(slot, gp_face3))
+    {
+        is_reloading = true;
+        reload_timer = reload_time;
+        show_debug_message("Reloading...");
+    }
+    
+    // Reload timer
+    if (is_reloading)
+    {
+        reload_timer--;
+        if (reload_timer <= 0)
+        {
+            ammo = max_ammo;
+            is_reloading = false;
+            show_debug_message("Reload complete");
+        }
     }
 }
 
