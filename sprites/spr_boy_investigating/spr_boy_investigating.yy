@@ -2,7 +2,7 @@
   "$GMSprite":"v2",
   "%Name":"spr_boy_investigating",
   "bboxMode":0,
-  "bbox_bottom":209,
+  "bbox_bottom":215,
   "bbox_left":12,
   "bbox_right":215,
   "bbox_top":2,
@@ -23,7 +23,8 @@
   "HTile":false,
   "layers":[
     {"$GMImageLayer":"","%Name":"b8cf99b4-6e0c-4401-a8f5-b9b97e530981","blendMode":0,"displayName":"qs","isLocked":false,"name":"b8cf99b4-6e0c-4401-a8f5-b9b97e530981","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
-    {"$GMImageLayer":"","%Name":"dfd229cc-befa-4ccf-be54-bb77ad4c1efd","blendMode":0,"displayName":"default","isLocked":false,"name":"dfd229cc-befa-4ccf-be54-bb77ad4c1efd","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"eac85076-a3d5-4409-81bd-506b19378777","blendMode":0,"displayName":"stick","isLocked":false,"name":"eac85076-a3d5-4409-81bd-506b19378777","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"dfd229cc-befa-4ccf-be54-bb77ad4c1efd","blendMode":0,"displayName":"default","isLocked":false,"name":"dfd229cc-befa-4ccf-be54-bb77ad4c1efd","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":false,},
   ],
   "name":"spr_boy_investigating",
   "nineSlice":null,
