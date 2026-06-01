@@ -27,32 +27,38 @@ switch (enemy_state)
         break;
        
     case "investigating":
-        sprite_index = spr_boy_investigating;
-        image_speed = 0.7;                    // slightly slower walk
-        hspeed = 1.5 * sign(obj_player.x - x); // walk slowly toward player
-		
-		var investigating_line = investigating_lines[irandom(array_length(investigating_lines)-1)];
-		show_speech(id, investigating_line, 90);
-        
-        // Still has LOS?
-        if (dist < aggro_range && !collision_line(x, y, obj_player.x, obj_player.y + obj_player.detection_y_offset, obj_env_collision, false, true))
-        {
-            alert_timer--;
-            
-            if (alert_timer <= 0)
-            {
-                enemy_state = "alert";
-                alert_timer = 6 * 60;   // full alert duration
-                show_debug_message("Enemy entered full alert");
-            }
-        }
-        else
-        {
-            // Lost sight → back to patrol
-            enemy_state = "patrol";
-            show_debug_message("Enemy entered patrol");
-        }
-        break;
+	    sprite_index = spr_boy_investigating;
+	    image_speed = 0.7;
+    
+	    var dir_to_player = sign(obj_player.x - x);
+	    hspeed = 1.2 * dir_to_player;
+	    image_xscale = dir_to_player;        // force facing
+    
+	    // Show speech only once
+	    if (!variable_instance_exists(id, "has_shown_investigate_line") || has_shown_investigate_line == false)
+	    {
+	        has_shown_investigate_line = true;
+	        var line = investigating_lines[irandom(array_length(investigating_lines)-1)];
+	        show_speech(id, line, 110);
+	    }
+    
+	    // Still has LOS?
+	    if (dist < aggro_range && !collision_line(x, y, obj_player.x, obj_player.y + obj_player.detection_y_offset, obj_env_collision, false, true))
+	    {
+	        alert_timer--;
+	        if (alert_timer <= 0)
+	        {
+	            enemy_state = "alert";
+	            alert_timer = 6 * 60;
+	        }
+	    }
+	    else
+	    {
+	        // Going back to patrol - clean reset
+	        enemy_state = "patrol";
+	        hspeed = 0;                    // important: reset hspeed
+	    }
+	    break;
        
     case "alert":
         sprite_index = spr_boy_spotted;

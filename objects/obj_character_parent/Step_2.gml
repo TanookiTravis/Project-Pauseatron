@@ -2,19 +2,21 @@
 // This condition checks if the X velocity is less than 0, meaning the character is moving left.
 var is_alert = false;
 if (variable_instance_exists(id, "enemy_state")) {
-    if (enemy_state == "alert") is_alert = true;
+    if (enemy_state == "alert" || enemy_state == "investigating") 
+        is_alert = true;
 }
 
 if (!is_alert) {
-	if (vel_x < 0)
-	{
-		image_xscale = -1;
-		image_yscale = 1;
-	} else if (vel_x > 0)
-	{
-		image_xscale = 1;
-		image_yscale = 1;
-	}
+    if (vel_x < 0)
+    {
+        image_xscale = -1;
+        image_yscale = 1;
+    } 
+    else if (vel_x > 0)
+    {
+        image_xscale = 1;
+        image_yscale = 1;
+    }
 }
 
 // This checks if the character's health is at, or below, 0, meaning it has been defeated.

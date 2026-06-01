@@ -7,6 +7,7 @@ damage = 1;
 move_speed = 2;
 enemy_hp = 5;
 enemy_state = "patrol"; // "patrol" or "alert" or "investigating"
+has_shown_investigate_line = false;
 alert_timer = 0;
 shoot_cooldown = 0;
 shoot_interval = 45; // lower = faster shooting
