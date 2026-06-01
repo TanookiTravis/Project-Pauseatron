@@ -90,11 +90,11 @@ if (global.gamepad_slot != -1)
 if (is_reloading)
 {
     // Show reload timer while reloading
-    if (!instance_exists(reload_prompt) || reload_prompt.object_index != obj_prompt_reload_1)
+    if (!instance_exists(reload_prompt) || reload_prompt.object_index != obj_prompt_reload)
     {
         if (instance_exists(reload_prompt)) instance_destroy(reload_prompt);
         
-        reload_prompt = instance_create_layer(x, y-170, "UI", obj_prompt_reload_1);
+        reload_prompt = instance_create_layer(x, y-170, "UI", obj_prompt_reload);
         reload_prompt.target = id;
     }
 }
