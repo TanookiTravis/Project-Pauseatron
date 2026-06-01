@@ -39,10 +39,12 @@ if (global.gamepad_slot != -1)
         aim_dir = point_direction(0, 0, right_h, right_v);
     }
  
+    // Determine vertical offset based on stance
+    var vertical_offset = is_crouching ? 40 : 80;   // crouched = lower spawn point
+    
     // Shooting
     if (!is_reloading && ammo > 0 && gamepad_button_check_pressed(slot, gp_shoulderrb))
     {
-        var vertical_offset = 80;
         var bullet = instance_create_layer(
             x + lengthdir_x(28, aim_dir),
             (y - vertical_offset) + lengthdir_y(28, aim_dir),
