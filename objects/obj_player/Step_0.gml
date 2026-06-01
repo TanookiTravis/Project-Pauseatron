@@ -24,22 +24,22 @@ else if (is_crouching)
     detection_y_offset = 0;
 }
 
-// === GAMEPAD FIRING ===
+// === GAMEPAD FIRING + RELOAD ===
 if (global.gamepad_slot != -1)
 {
     var slot = global.gamepad_slot;
     var right_h = gamepad_axis_value(slot, gp_axisrh);
     var right_v = gamepad_axis_value(slot, gp_axisrv);
     var holding_l2 = gamepad_button_check(slot, gp_shoulderlb);
-  
+ 
     var aim_dir = (image_xscale > 0) ? 0 : 180;
-  
+ 
     if (holding_l2 && (abs(right_h) > 0.25 || abs(right_v) > 0.25))
     {
         aim_dir = point_direction(0, 0, right_h, right_v);
     }
-  
-    // Shooting (only if not reloading and has ammo)
+ 
+    // Shooting
     if (!is_reloading && ammo > 0 && gamepad_button_check_pressed(slot, gp_shoulderrb))
     {
         var vertical_offset = 80;
@@ -49,23 +49,28 @@ if (global.gamepad_slot != -1)
             "Bullets",
             obj_bullet
         );
-          
+         
         bullet.direction = aim_dir;
         bullet.speed = 25;
         bullet.bounces = 1;
         bullet.bounce_factor = 0.90;
-        
+       
         ammo--;
     }
-    
-    // Reload with button
-    if (!is_reloading && ammo < max_ammo && gamepad_button_check_pressed(slot, gp_face3))
-    {
-        is_reloading = true;
-        reload_timer = reload_time;
-        show_debug_message("Reloading...");
-    }
-    
+   
+        // === RELOAD (only if no stealth prompt exists) ===
+	    if (!is_reloading && ammo < max_ammo && gamepad_button_check_pressed(slot, gp_face3))
+	    {
+	        // Only reload if there is NO stealth prompt active
+	        if (!instance_exists(obj_prompt_stealth))
+	        {
+	            is_reloading = true;
+	            reload_timer = reload_time;
+	            show_debug_message("Reloading...");
+	        }
+	        // If a stealth prompt exists, do NOTHING here — let the enemy handle the button press
+	    }
+   
     // Reload timer
     if (is_reloading)
     {
@@ -76,6 +81,39 @@ if (global.gamepad_slot != -1)
             is_reloading = false;
             show_debug_message("Reload complete");
         }
+    }
+}
+
+// === RELOAD PROMPT & TIMER ===
+if (is_reloading)
+{
+    // Show reload timer while reloading
+    if (!instance_exists(reload_prompt) || reload_prompt.object_index != obj_prompt_reload_timer)
+    {
+        if (instance_exists(reload_prompt)) instance_destroy(reload_prompt);
+        
+        reload_prompt = instance_create_layer(x, y-170, "UI", obj_prompt_reload_timer);
+        reload_prompt.target = id;
+    }
+}
+else if (ammo <= 0 && !is_reloading)
+{
+    // Show Y prompt when out of ammo
+    if (!instance_exists(reload_prompt) || reload_prompt.object_index != obj_prompt_reload)
+    {
+        if (instance_exists(reload_prompt)) instance_destroy(reload_prompt);
+        
+        reload_prompt = instance_create_layer(x, y-50, "UI", obj_prompt_reload);
+        reload_prompt.target = id;
+    }
+}
+else
+{
+    // Clean up when not needed
+    if (instance_exists(reload_prompt))
+    {
+        instance_destroy(reload_prompt);
+        reload_prompt = noone;
     }
 }
 

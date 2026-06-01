@@ -1,1 +1,1 @@
-target_enemy = noone;
+target = noone;

@@ -19,6 +19,7 @@ max_ammo = 6;
 is_reloading = false;
 reload_timer = 0;
 reload_time = 3 * 60;   // seconds at 60fps
+reload_prompt = noone;
 
 // This variable tells whether the player is currently in knockback (from being hit by an enemy). It will be true if it is, and false if not.
 in_knockback = false;

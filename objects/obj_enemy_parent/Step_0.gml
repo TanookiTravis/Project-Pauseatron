@@ -95,7 +95,7 @@ switch (enemy_state)
         break;
 }
 
-// === STEALTH KILL CHECK (runs in BOTH states) ===
+// === STEALTH KILL CHECK ===
 if (dist < stealth_kill_distance)
 {
     var behind = false;
@@ -104,31 +104,24 @@ if (dist < stealth_kill_distance)
    
     if (behind)
     {
-        var current_prompt = instance_find(obj_prompt_stealth, 0);
-        
-        if (!instance_exists(current_prompt))
+        // Create / update prompt
+        if (!instance_exists(obj_prompt_stealth) || obj_prompt_stealth.target != id)
         {
-            var new_prompt = instance_create_layer(x, y-global.stealth_kill_prompt_margin, "UI", obj_prompt_stealth);
+            instance_destroy(obj_prompt_stealth);
+            
+            var new_prompt = instance_create_layer(x, y - global.prompt_top_margin, "UI", obj_prompt_stealth);
             new_prompt.target = id;
+            
+            show_debug_message("Prompt created for enemy " + string(id));
         }
-        else if (current_prompt.target != id)
-        {
-            if (dist < point_distance(current_prompt.target.x, current_prompt.target.y, obj_player.x, obj_player.y))
-            {
-                instance_destroy(current_prompt);
-                var new_prompt = instance_create_layer(x, y-global.stealth_kill_prompt_margin, "UI", obj_prompt_stealth);
-                new_prompt.target = id;
-            }
-        }
-       
-        if (global.gamepad_slot != -1 && gamepad_button_check_pressed(global.gamepad_slot, gp_face3))
+        
+        // Stealth Kill (B button)
+        if (global.gamepad_slot != -1 && gamepad_button_check_pressed(global.gamepad_slot, gp_face2))
         {
             audio_play_sound(snd_ankle_breaker, 0, 0);
             instance_destroy(obj_prompt_stealth);
             instance_destroy();
             instance_create_layer(x, y, layer, defeated_object);
-			var stealth_kill_line = stealth_kill_lines[irandom(array_length(stealth_kill_lines)-1)];
-			show_speech(obj_player, stealth_kill_line, 60);
         }
     }
 }
