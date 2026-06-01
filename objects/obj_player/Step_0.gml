@@ -90,22 +90,22 @@ if (global.gamepad_slot != -1)
 if (is_reloading)
 {
     // Show reload timer while reloading
-    if (!instance_exists(reload_prompt) || reload_prompt.object_index != obj_prompt_reload)
+    if (!instance_exists(reload_prompt) || reload_prompt.object_index != obj_prompt_reload_timer)
     {
         if (instance_exists(reload_prompt)) instance_destroy(reload_prompt);
         
-        reload_prompt = instance_create_layer(x, y-170, "UI", obj_prompt_reload);
+        reload_prompt = instance_create_layer(x, y-170, "UI", obj_prompt_reload_timer);
         reload_prompt.target = id;
     }
 }
 else if (ammo <= 0 && !is_reloading)
 {
     // Show Y prompt when out of ammo
-    if (!instance_exists(reload_prompt) || reload_prompt.object_index != obj_prompt_stealth_1)
+    if (!instance_exists(reload_prompt) || reload_prompt.object_index != obj_prompt_reload)
     {
         if (instance_exists(reload_prompt)) instance_destroy(reload_prompt);
         
-        reload_prompt = instance_create_layer(x, y-50, "UI", obj_prompt_stealth_1);
+        reload_prompt = instance_create_layer(x, y-50, "UI", obj_prompt_reload);
         reload_prompt.target = id;
     }
 }
