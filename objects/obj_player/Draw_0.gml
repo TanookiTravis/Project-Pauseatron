@@ -1,7 +1,7 @@
 draw_self();
 
 // Draw red aiming laser anytime L2 is held
-if (global.gamepad_slot != -1)
+if (global.gamepad_slot != -1 && !is_hanging)
 {
     var slot = global.gamepad_slot;
     var holding_l2 = gamepad_button_check(slot, gp_shoulderlb);

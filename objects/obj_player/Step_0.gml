@@ -25,7 +25,7 @@ else if (is_crouching)
 }
 
 // === GAMEPAD FIRING + RELOAD ===
-if (global.gamepad_slot != -1)
+if (global.gamepad_slot != -1 && !is_hanging)
 {
     var slot = global.gamepad_slot;
     var right_h = gamepad_axis_value(slot, gp_axisrh);
