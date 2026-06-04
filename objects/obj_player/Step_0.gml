@@ -214,10 +214,21 @@ if (global.gamepad_slot != -1 && gamepad_button_check_pressed(global.gamepad_slo
 {
     if (grapple_state == "idle" && !instance_exists(obj_grapple))
     {
+		if (!is_hanging) {
+			sprite_index = spr_player_grapple;
+			image_speed = 1;
+			image_index = 0;
+		}
+		
         grapple_state = "shooting";
         var g = instance_create_layer(x, y-20, "Bullets", obj_grapple);
         g.start_x = x;
         g.start_y = y-20;
 		alarm[1] = 120;
     }
+}
+if (grapple_state == "shooting" && image_index >= image_number - 1)
+{
+    image_speed = 0;
+    image_index = image_number - 1;   // freeze on last frame
 }

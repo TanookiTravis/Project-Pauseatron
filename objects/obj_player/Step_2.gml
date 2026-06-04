@@ -119,6 +119,18 @@ camera_set_view_pos(cam,
 // === GRAPPLE PULL ===
 if (grapple_state == "pulling" && grapple_target != noone)
 {
+	// Detach from ledge as soon as we start pulling
+    if (is_hanging)
+    {
+        is_hanging = false;
+        hang_x = 0;
+        hang_y = 0;
+    }
+	
+	sprite_index = spr_player_grapple;
+	image_speed = 0;
+    image_index = image_number - 1;
+	
     var target_top = grapple_target.bbox_top;
     var pull_speed = 18;
 
@@ -132,6 +144,7 @@ if (grapple_state == "pulling" && grapple_target != noone)
         
         grapple_state = "idle";
         grapple_target = noone;
+		sprite_index = spr_player_idle;
         
         if (instance_exists(obj_grapple)) {
             instance_destroy(obj_grapple);
