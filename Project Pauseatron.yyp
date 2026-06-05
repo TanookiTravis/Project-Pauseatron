@@ -73,7 +73,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.4.222",
+    "IDEVersion":"2026.0.0.16",
   },
   "name":"Project Pauseatron",
   "resources":[
@@ -114,6 +114,7 @@
     {"id":{"name":"obj_game_manager","path":"objects/obj_game_manager/obj_game_manager.yy",},},
     {"id":{"name":"obj_gamepad_input","path":"objects/obj_gamepad_input/obj_gamepad_input.yy",},},
     {"id":{"name":"obj_grapple","path":"objects/obj_grapple/obj_grapple.yy",},},
+    {"id":{"name":"obj_hud_ammo","path":"objects/obj_hud_ammo/obj_hud_ammo.yy",},},
     {"id":{"name":"obj_hud_background","path":"objects/obj_hud_background/obj_hud_background.yy",},},
     {"id":{"name":"obj_hud_coins","path":"objects/obj_hud_coins/obj_hud_coins.yy",},},
     {"id":{"name":"obj_hud_hearts","path":"objects/obj_hud_hearts/obj_hud_hearts.yy",},},
@@ -221,6 +222,7 @@
     {"id":{"name":"spr_hanging_group_1","path":"sprites/spr_hanging_group_1/spr_hanging_group_1.yy",},},
     {"id":{"name":"spr_hanging_group_2","path":"sprites/spr_hanging_group_2/spr_hanging_group_2.yy",},},
     {"id":{"name":"spr_hanging_group_3","path":"sprites/spr_hanging_group_3/spr_hanging_group_3.yy",},},
+    {"id":{"name":"spr_hud_ammo","path":"sprites/spr_hud_ammo/spr_hud_ammo.yy",},},
     {"id":{"name":"spr_hud_background","path":"sprites/spr_hud_background/spr_hud_background.yy",},},
     {"id":{"name":"spr_hud_coins","path":"sprites/spr_hud_coins/spr_hud_coins.yy",},},
     {"id":{"name":"spr_hud_heart_empty","path":"sprites/spr_hud_heart_empty/spr_hud_heart_empty.yy",},},
