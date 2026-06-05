@@ -13,7 +13,7 @@ if (global.player_hp > 0)
 	global.player_hp -= damage;
 	
 	// This gives 2 seconds of invincibility to the player.
-	no_hurt_frames += 120;
+	no_hurt_frames += 60;
 
 	//// This resets the X and Y velocities of the player so it stops all movement.
 	//vel_x = 0;
