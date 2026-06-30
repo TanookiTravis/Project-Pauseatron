@@ -1,6 +1,9 @@
 // This runs the Create event of the parent, ensuring the player gets all variables from the character parent.
 event_inherited();
 
+right_h = 0;
+right_v = 0;
+
 // This variable stores the number of coins the player has collected.
 coins = 0;
 

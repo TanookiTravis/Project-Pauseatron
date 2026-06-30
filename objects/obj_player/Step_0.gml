@@ -24,27 +24,42 @@ else if (is_crouching)
     detection_y_offset = 0;
 }
 
-// === GAMEPAD FIRING + RELOAD ===
+// === GAMEPAD FIRING + RELOAD + GRENADES ===
 if (global.gamepad_slot != -1 && !is_hanging)
 {
     var slot = global.gamepad_slot;
-    var right_h = gamepad_axis_value(slot, gp_axisrh);
-    var right_v = gamepad_axis_value(slot, gp_axisrv);
+    right_h = gamepad_axis_value(slot, gp_axisrh);
+    right_v = gamepad_axis_value(slot, gp_axisrv);
     var holding_l2 = gamepad_button_check(slot, gp_shoulderlb);
+    var holding_l1 = gamepad_button_check(slot, gp_shoulderl);
+	var fire_pressed = gamepad_button_check_pressed(slot, gp_shoulderrb);
  
-    var aim_dir = (image_xscale > 0) ? 0 : 180;
- 
-    if (holding_l2 && (abs(right_h) > 0.25 || abs(right_v) > 0.25))
-    {
-        aim_dir = point_direction(0, 0, right_h, right_v);
-    }
+    var aim_dir;
+	if (abs(right_h) > 0.3 || abs(right_v) > 0.3)
+	{
+	    aim_dir = point_direction(0, 0, right_h, right_v);
+	}
+	else
+	{
+	    aim_dir = (image_xscale > 0) ? 0 : 180;
+	}
  
     // Determine vertical offset based on stance
     var vertical_offset = is_crouching ? 40 : 80;   // crouched = lower spawn point
     
-    // Shooting
-    if (!is_reloading && ammo > 0 && gamepad_button_check_pressed(slot, gp_shoulderrb))
+    // Grenades
+    if (holding_l1 && fire_pressed)
+	{
+	    var throw_spd = 15;     // adjust throw distance
+	    var grav = 0.3;         // adjust arc height
+        
+	    var g = instance_create_layer(x, y - 20, "Bullets", obj_grenade);
+	    g.vx = lengthdir_x(throw_spd, aim_dir);
+	    g.vy = lengthdir_y(throw_spd, aim_dir);
+	    g.grav = grav;
+	} else if (fire_pressed && !is_reloading && ammo > 0)
     {
+		// Shooting
         var bullet = instance_create_layer(
             x + lengthdir_x(28, aim_dir),
             (y - vertical_offset) + lengthdir_y(28, aim_dir),
@@ -60,18 +75,18 @@ if (global.gamepad_slot != -1 && !is_hanging)
         ammo--;
     }
    
-        // === RELOAD (only if no stealth prompt exists) ===
-	    if (!is_reloading && ammo < max_ammo && gamepad_button_check_pressed(slot, gp_face3))
+    // === RELOAD (only if no stealth prompt exists) ===
+	if (!is_reloading && ammo < max_ammo && gamepad_button_check_pressed(slot, gp_face3))
+	{
+	    // Only reload if there is NO stealth prompt active
+	    if (!instance_exists(obj_prompt_stealth))
 	    {
-	        // Only reload if there is NO stealth prompt active
-	        if (!instance_exists(obj_prompt_stealth))
-	        {
-	            is_reloading = true;
-	            reload_timer = reload_time;
-	            show_debug_message("Reloading...");
-	        }
-	        // If a stealth prompt exists, do NOTHING here — let the enemy handle the button press
+	        is_reloading = true;
+	        reload_timer = reload_time;
+	        show_debug_message("Reloading...");
 	    }
+	    // If a stealth prompt exists, do NOTHING here — let the enemy handle the button press
+	}
    
     // Reload timer
     if (is_reloading)
@@ -84,6 +99,31 @@ if (global.gamepad_slot != -1 && !is_hanging)
             show_debug_message("Reload complete");
         }
     }
+	
+	// Grenades
+	//if (holding_r1 && !is_reloading)
+    //{
+    //    var throw_dir;
+	//    if (abs(right_h) > 0.3 || abs(right_v) > 0.3)
+	//    {
+	//        throw_dir = point_direction(0, 0, right_h, right_v);
+	//    }
+	//    else
+	//    {
+	//        throw_dir = (image_xscale > 0) ? 0 : 180;
+	//    }
+    
+	//    var throw_spd = 10;
+	//    var grav = 0.3;
+    
+	//    var g = instance_create_layer(x, y - 20, "Instances", obj_grenade);
+	//    g.vx = lengthdir_x(throw_spd, throw_dir);
+	//    g.vy = lengthdir_y(throw_spd, throw_dir);
+	//    g.grav = grav;
+    
+	//    // Optional: grenade count
+	//    // if (grenades > 0) { grenades--; ... }
+    //}
 }
 
 // === RELOAD PROMPT & TIMER ===

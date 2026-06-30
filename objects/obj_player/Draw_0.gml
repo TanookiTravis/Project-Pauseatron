@@ -1,28 +1,30 @@
 draw_self();
 
-// Draw red aiming laser anytime L2 is held
+// Draw red aiming lasers for shooting and grenades
 if (global.gamepad_slot != -1 && !is_hanging)
 {
     var slot = global.gamepad_slot;
     var holding_l2 = gamepad_button_check(slot, gp_shoulderlb);
-    
-    if (holding_l2)
+    var holding_l1 = gamepad_button_check(slot, gp_shoulderl);
+	
+	var rh = gamepad_axis_value(slot, gp_axisrh);
+    var rv = gamepad_axis_value(slot, gp_axisrv);
+        
+    var aim_dir;
+        
+    // Use right stick if moving it, otherwise use facing direction
+    if (abs(rh) > 0.25 || abs(rv) > 0.25)
     {
-        var rh = gamepad_axis_value(slot, gp_axisrh);
-        var rv = gamepad_axis_value(slot, gp_axisrv);
-        
-        var aim_dir;
-        
-        // Use right stick if moving it, otherwise use facing direction
-        if (abs(rh) > 0.25 || abs(rv) > 0.25)
-        {
-            aim_dir = point_direction(0, 0, rh, rv);
-        }
-        else
-        {
-            aim_dir = (image_xscale > 0) ? 0 : 180;
-        }
-        
+        aim_dir = point_direction(0, 0, rh, rv);
+    }
+    else
+    {
+        aim_dir = (image_xscale > 0) ? 0 : 180;
+    }
+    
+	// Shooting
+    if (holding_l2)
+    {        
 		var vertical_offset = 82;
         var start_x = x + lengthdir_x(36, aim_dir);
         var start_y = (y - vertical_offset) + lengthdir_y(28, aim_dir);
@@ -36,7 +38,35 @@ if (global.gamepad_slot != -1 && !is_hanging)
         
         draw_set_alpha(1);
         draw_set_color(c_white);
-    }
+    } else if (holding_l1) 
+    {
+		// Grenades
+		var throw_dir = aim_dir;
+	    var throw_spd = 15;
+	    var grav = 0.3;
+	    var steps = 40;
+
+	    var px = x;
+	    var py = y - 20;
+	    var vx = lengthdir_x(throw_spd, throw_dir);
+	    var vy = lengthdir_y(throw_spd, throw_dir);
+
+	    draw_set_color(c_yellow);
+	    for (var i = 0; i < steps; i++)
+	    {
+	        draw_circle(px, py, 2, false);   // dotted arc
+
+	        var next_x = px + vx;
+	        var next_y = py + vy;
+
+	        if (place_meeting(next_x, next_y, obj_env_collision)) break; // stop at ground
+
+	        px = next_x;
+	        py = next_y;
+	        vy += grav;
+	    }
+	    draw_set_color(c_white);
+	}
 }
 
 // === GRAPPLE SHRINKING ROPE ===
