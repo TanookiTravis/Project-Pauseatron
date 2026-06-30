@@ -1,7 +1,6 @@
 var _old_x = x;
 var _old_y = y;
-distance_travelled += speed;   // or sqrt(hspeed*hspeed + vspeed*vspeed)
-
+distance_travelled += speed;
 // Horizontal bounce (only bounce off real walls, not destructible blocks)
 x += hspeed;
 if (place_meeting(x, y, obj_env_collision) && !place_meeting(x, y, obj_block_parent))
@@ -21,9 +20,7 @@ if (place_meeting(x, y, obj_env_collision) && !place_meeting(x, y, obj_block_par
 }
 
 // Destroy on limits
-distance_travelled += speed;   // or point_distance(_old_x, _old_y, x, y)
-
-if (distance_travelled > 1300 || bounces <= max_bounces)
+if (distance_travelled > 800 || bounces <= max_bounces)
 {
     instance_destroy();
 }

@@ -53,7 +53,7 @@ if (global.gamepad_slot != -1 && !is_hanging)
         );
          
         bullet.direction = aim_dir;
-        bullet.speed = 25;
+        bullet.speed = 35;
         bullet.bounces = 1;
         bullet.bounce_factor = 0.90;
        

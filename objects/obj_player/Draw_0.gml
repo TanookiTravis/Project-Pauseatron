@@ -23,14 +23,15 @@ if (global.gamepad_slot != -1 && !is_hanging)
             aim_dir = (image_xscale > 0) ? 0 : 180;
         }
         
-		var vertical_offset = 64;
-        var start_x = x + lengthdir_x(28, aim_dir);
+		var vertical_offset = 82;
+        var start_x = x + lengthdir_x(36, aim_dir);
         var start_y = (y - vertical_offset) + lengthdir_y(28, aim_dir);
+		// length of laser sight
         var end_x   = start_x + lengthdir_x(200, aim_dir);
         var end_y   = start_y + lengthdir_y(200, aim_dir);
         
         draw_set_color(c_red);
-        draw_set_alpha(0.7);
+        draw_set_alpha(0.6);
         draw_line_width(start_x, start_y, end_x, end_y, 3);
         
         draw_set_alpha(1);
