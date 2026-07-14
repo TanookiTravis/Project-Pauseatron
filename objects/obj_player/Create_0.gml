@@ -5,7 +5,7 @@ right_h = 0;
 right_v = 0;
 
 // This variable stores the number of coins the player has collected.
-coins = 0;
+coins = 3;
 
 // Camera settings
 aim_offset_x = 0;
