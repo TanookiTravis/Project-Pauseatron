@@ -74,6 +74,17 @@ if (global.gamepad_slot != -1 && !is_hanging)
         bullet.bounce_factor = 0.90;
        
         ammo--;
+		audio_play_sound(snd_gun_pistol, 0, false);
+		
+		// Alert all enemies nearby
+		with (obj_enemy_parent)
+		{
+		    if (point_distance(x, y, other.x, other.y) < 1000)
+		    {
+		        enemy_state = "investigating";
+		        alert_timer = 8 * 60;   // 8 seconds at 60 fps
+		    }
+		}
     }
    
     // === RELOAD (only if no stealth prompt exists) ===

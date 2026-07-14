@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_explosion_grenade",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":3.0480046,
+  "exportDir":"",
+  "name":"snd_explosion_grenade",
+  "parent":{
+    "name":"Gameplay",
+    "path":"folders/Sounds/SFX/Gameplay.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_explosion_grenade.mp3",
+  "volume":1.0,
+}

@@ -54,7 +54,7 @@ if (global.gamepad_slot != -1 && !is_hanging)
 	    var vx = lengthdir_x(throw_spd, throw_dir);
 	    var vy = lengthdir_y(throw_spd, throw_dir);
 
-	    draw_set_color(c_yellow);
+	    draw_set_color(c_red);
 	    for (var i = 0; i < steps; i++)
 	    {
 	        draw_circle(px, py, 2, false);   // dotted arc
