@@ -83,7 +83,7 @@ switch (sprite_index)
 	        if (place_meeting(x, y + 6, obj_bridge))
 	        {
 	            show_debug_message("Crouch drop triggered, data: " + string(id.sprite_height));
-	            y += id.sprite_height + 35; // downward nudge
+	            y += id.sprite_height + 30; // downward nudge
 	            vel_y = 10; // downward velocity
 	        }
 	    }
