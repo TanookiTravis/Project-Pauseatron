@@ -52,6 +52,18 @@ repeat (_move_count_y)
 	// This 'else' block runs if a collision was found.
 	else
 	{
+		// Push the player out of the floor (always push UP when landing)
+	    while (place_meeting(x, y, obj_env_collision))
+	    {
+	        y -= 10;                    // always push upward
+	    }
+
+	    // If still stuck and holding left/right, try sliding horizontally
+	    while (place_meeting(x, y, obj_env_collision) && vel_x != 0)
+	    {
+	        x -= sign(vel_x);
+	    }
+		
 		// In that case, we reset the Y velocity to 0, so the character stops its movement on that axis.
 		vel_y = 0;
 	
