@@ -1,3 +1,8 @@
+if (!instance_exists(obj_player))
+{
+	exit;
+}
+
 var ax = display_get_gui_width() - 350;
 var ay = 150;
 var line_w   = 7;

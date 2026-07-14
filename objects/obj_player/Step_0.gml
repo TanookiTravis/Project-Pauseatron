@@ -31,7 +31,6 @@ if (global.gamepad_slot != -1 && !is_hanging)
     right_h = gamepad_axis_value(slot, gp_axisrh);
     right_v = gamepad_axis_value(slot, gp_axisrv);
     var holding_l2 = gamepad_button_check(slot, gp_shoulderlb);
-    var holding_l1 = gamepad_button_check(slot, gp_shoulderl);
 	var fire_pressed = gamepad_button_check_pressed(slot, gp_shoulderrb);
  
     var aim_dir;
@@ -48,7 +47,7 @@ if (global.gamepad_slot != -1 && !is_hanging)
     var vertical_offset = is_crouching ? 40 : 80;   // crouched = lower spawn point
     
     // Grenades
-    if (holding_l1 && fire_pressed)
+    if (holding_l2 && fire_pressed)
 	{
 	    var throw_spd = 15;     // adjust throw distance
 	    var grav = 0.3;         // adjust arc height
@@ -83,7 +82,6 @@ if (global.gamepad_slot != -1 && !is_hanging)
 	    {
 	        is_reloading = true;
 	        reload_timer = reload_time;
-	        show_debug_message("Reloading...");
 	    }
 	    // If a stealth prompt exists, do NOTHING here — let the enemy handle the button press
 	}
@@ -96,34 +94,8 @@ if (global.gamepad_slot != -1 && !is_hanging)
         {
             ammo = max_ammo;
             is_reloading = false;
-            show_debug_message("Reload complete");
         }
     }
-	
-	// Grenades
-	//if (holding_r1 && !is_reloading)
-    //{
-    //    var throw_dir;
-	//    if (abs(right_h) > 0.3 || abs(right_v) > 0.3)
-	//    {
-	//        throw_dir = point_direction(0, 0, right_h, right_v);
-	//    }
-	//    else
-	//    {
-	//        throw_dir = (image_xscale > 0) ? 0 : 180;
-	//    }
-    
-	//    var throw_spd = 10;
-	//    var grav = 0.3;
-    
-	//    var g = instance_create_layer(x, y - 20, "Instances", obj_grenade);
-	//    g.vx = lengthdir_x(throw_spd, throw_dir);
-	//    g.vy = lengthdir_y(throw_spd, throw_dir);
-	//    g.grav = grav;
-    
-	//    // Optional: grenade count
-	//    // if (grenades > 0) { grenades--; ... }
-    //}
 }
 
 // === RELOAD PROMPT & TIMER ===
@@ -166,11 +138,10 @@ aim_offset_y = 0;
 if (global.gamepad_slot != -1)
 {
     var slot = global.gamepad_slot;
-    var holding_l2 = gamepad_button_check(slot, gp_shoulderlb);
     var rh = gamepad_axis_value(slot, gp_axisrh);
     var rv = gamepad_axis_value(slot, gp_axisrv);
     
-    if (holding_l2 && (abs(rh) > 0.25 || abs(rv) > 0.25))
+    if ((abs(rh) > 0.25 || abs(rv) > 0.25))
     {
         var aim_dir = point_direction(0, 0, rh, rv);
         aim_offset_x = lengthdir_x(300, aim_dir);

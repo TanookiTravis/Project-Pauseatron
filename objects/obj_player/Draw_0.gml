@@ -5,7 +5,7 @@ if (global.gamepad_slot != -1 && !is_hanging)
 {
     var slot = global.gamepad_slot;
     var holding_l2 = gamepad_button_check(slot, gp_shoulderlb);
-    var holding_l1 = gamepad_button_check(slot, gp_shoulderl);
+	var moving_r3 = false;
 	
 	var rh = gamepad_axis_value(slot, gp_axisrh);
     var rv = gamepad_axis_value(slot, gp_axisrv);
@@ -16,6 +16,7 @@ if (global.gamepad_slot != -1 && !is_hanging)
     if (abs(rh) > 0.25 || abs(rv) > 0.25)
     {
         aim_dir = point_direction(0, 0, rh, rv);
+		moving_r3 = true;
     }
     else
     {
@@ -23,7 +24,7 @@ if (global.gamepad_slot != -1 && !is_hanging)
     }
     
 	// Shooting
-    if (holding_l2)
+    if (moving_r3 && !holding_l2)
     {        
 		var vertical_offset = 82;
         var start_x = x + lengthdir_x(36, aim_dir);
@@ -38,9 +39,11 @@ if (global.gamepad_slot != -1 && !is_hanging)
         
         draw_set_alpha(1);
         draw_set_color(c_white);
-    } else if (holding_l1) 
+    }
+	
+	// Grenades
+	if (holding_l2) 
     {
-		// Grenades
 		var throw_dir = aim_dir;
 	    var throw_spd = 15;
 	    var grav = 0.3;
