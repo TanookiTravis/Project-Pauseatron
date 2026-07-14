@@ -4,8 +4,8 @@ event_inherited();
 right_h = 0;
 right_v = 0;
 
-// This variable stores the number of coins the player has collected.
-coins = 3;
+// This variable stores the number of grenades the player has collected.
+grenades = 3;
 
 // Camera settings
 aim_offset_x = 0;

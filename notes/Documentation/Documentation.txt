@@ -26,7 +26,7 @@ obj_player is the main player object and a child of obj_character_parent.
 	Key Down A		Runs the Key Down Left event (mimics its behaviour), for WASD input.
 	Key Down D		Runs the Key Down Right event (mimics its behaviour), for WASD input.
 	Key Press Space	Makes the player jump.
-	-><- obj_coin			Handles collision with coins, collecting them.
+	-><- obj_grenade			Handles collision with grenades, collecting them.
 	-><- obj_end_gate		Handles collision with the end gate, which takes you to the next level.
 	-><- obj_enemy_parent	Handles collision with enemy. Defeats the enemy if the player jumped on it, otherwise hurts the player.
 	-><- obj_hurt_zone		Handles collision with hurt zones.
@@ -75,7 +75,7 @@ and perform their actions.
 	Blocks: This folder contains blocks that the player can hit with its head.
 	Editor: This contains placeable objects that aren't visible in-game but still interact with the player in some way.
 	Interactive: This contains environment objects that are interactive but don't fall into any other category.
-	Items: This contains collectible items, like coins.
+	Items: This contains collectible items, like grenades.
 
 
 

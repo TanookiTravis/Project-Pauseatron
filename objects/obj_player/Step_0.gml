@@ -47,7 +47,7 @@ if (global.gamepad_slot != -1 && !is_hanging)
     var vertical_offset = is_crouching ? 40 : 80;   // crouched = lower spawn point
     
     // Grenades
-    if (holding_l2 && fire_pressed && coins > 0)
+    if (holding_l2 && fire_pressed && grenades > 0)
 	{
 	    var throw_spd = 15;     // adjust throw distance
 	    var grav = 0.3;         // adjust arc height
@@ -57,7 +57,7 @@ if (global.gamepad_slot != -1 && !is_hanging)
 	    g.vy = lengthdir_y(throw_spd, aim_dir);
 	    g.grav = grav;
 		
-		coins--;
+		grenades--;
 	} else if (!holding_l2 && fire_pressed && !is_reloading && ammo > 0)
     {
 		// Shooting

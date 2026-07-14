@@ -5,11 +5,11 @@ if (!instance_exists(obj_player))
 	exit;
 }
 
-// Draw the coin HUD object itself
+// Draw the grenade HUD object itself
 draw_self();
 
 // This font will now be used for drawing text
 draw_set_font(fnt_hud);
 
-// Draw the player's coins value to the right of this instance
-draw_text(x + 54, y, "x" + string(obj_player.coins));
+// Draw the player's grenades value to the right of this instance
+draw_text(x + 54, y, "x" + string(obj_player.grenades));

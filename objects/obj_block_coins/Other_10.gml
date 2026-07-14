@@ -25,9 +25,9 @@ if (hits_left <= 0)
 	sprite_index = spr_block_coins_inactive;
 }
 
-// Add the block's coins value to the player's coins variable
+// Add the block's grenades value to the player's grenades variable
 // (This variable is created in the Variable Definitions)
-obj_player.coins += coins;
+obj_player.grenades += grenades;
 
 // Create the block 'hit animation' instance above the block; see the sprite "spr_block_coins_hit_animation"
 // On the X axis, it's created at the center of the instance, by adding half its width to the X (which is on the left)
