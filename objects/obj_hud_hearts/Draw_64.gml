@@ -1,27 +1,28 @@
-// If the player instance does not exist,
 if (!instance_exists(obj_player))
 {
-	// Exit the event so it does not run
-	exit;
+    exit;
 }
 
-// Draw the empty heart sprites up to the player's max hp value
-var _width = sprite_get_width(spr_hud_heart_empty);
-var _x_pos = 0;
+var hx = 30;
+var hy = display_get_gui_height() - 120;
 
-for (var i = global.max_hp; i > 0; --i)
+var line_w   = 7;
+var line_h   = 36;
+var spacing  = 14;
+
+draw_set_color(c_red);
+for (var i = 0; i < global.max_hp; i++)
 {
-	draw_sprite(spr_hud_heart_empty, 0, x + _x_pos, y);
-	
-	_x_pos += _width;
+    var xx = hx + (i * spacing);
+    
+    if (i < global.player_hp)
+    {
+        draw_rectangle(xx, hy, xx + line_w, hy + line_h, false);
+    }
+    else
+    {
+        draw_rectangle(xx, hy, xx + line_w, hy + line_h, true);
+    }
 }
 
-// Draw the full heart sprites up to the player's hp
-_width = sprite_get_width(spr_hud_heart_full);
-_x_pos = 0;
-
-for (var i = global.player_hp; i > 0; --i) {
-	draw_sprite(spr_hud_heart_full, 0, x + _x_pos, y);
-	
-	_x_pos += _width;
-}
+draw_set_color(c_white);

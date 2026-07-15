@@ -1,15 +1,19 @@
-// If the player instance does not exist,
 if (!instance_exists(obj_player))
 {
-	// Exit the event so it does not run
-	exit;
+    exit;
 }
 
-// Draw the grenade HUD object itself
-draw_self();
+// Position in lower left (same area as health and ammo)
+var cx = 25;
+var cy = display_get_gui_height() - 210;   // adjust this number to move it up/down
 
-// This font will now be used for drawing text
 draw_set_font(fnt_hud);
+draw_set_color(c_white);
 
-// Draw the player's grenades value to the right of this instance
-draw_text(x + 54, y, "x" + string(obj_player.grenades));
+// Draw the coin sprite
+draw_sprite(spr_hud_coins, 0, cx, cy);
+
+// Draw the text to the right of the sprite
+draw_text(cx + 40, cy - 4, "x" + string(obj_player.grenades));
+
+draw_set_color(c_white);

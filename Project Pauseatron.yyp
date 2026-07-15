@@ -117,7 +117,6 @@
     {"id":{"name":"obj_grapple","path":"objects/obj_grapple/obj_grapple.yy",},},
     {"id":{"name":"obj_grenade","path":"objects/obj_grenade/obj_grenade.yy",},},
     {"id":{"name":"obj_hud_ammo","path":"objects/obj_hud_ammo/obj_hud_ammo.yy",},},
-    {"id":{"name":"obj_hud_background","path":"objects/obj_hud_background/obj_hud_background.yy",},},
     {"id":{"name":"obj_hud_coins","path":"objects/obj_hud_coins/obj_hud_coins.yy",},},
     {"id":{"name":"obj_hud_hearts","path":"objects/obj_hud_hearts/obj_hud_hearts.yy",},},
     {"id":{"name":"obj_hurt_zone","path":"objects/obj_hurt_zone/obj_hurt_zone.yy",},},

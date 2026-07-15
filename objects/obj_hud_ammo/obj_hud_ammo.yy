@@ -30,10 +30,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_hud_ammo",
-    "path":"sprites/spr_hud_ammo/spr_hud_ammo.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

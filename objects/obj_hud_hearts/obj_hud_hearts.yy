@@ -30,10 +30,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_hud_heart_full",
-    "path":"sprites/spr_hud_heart_full/spr_hud_heart_full.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }
